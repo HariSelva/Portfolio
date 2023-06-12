@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Kaurisan (Hari) Selvarasa</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Tech Art Project &ndash; Puzzle of Secrets.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="shortcut icon" href="./media/icon/favicon.ico" type="image/x-icon">
+  </head>
+
+  <body id="page-top">
+    <div class="header">  
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">Kaurisan (Hari) Selvarasa</span> <!-- on smaller screens, appears in navigation bar at top of page -->
+        <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="./media/pfp.jpg"></span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#lock_mechanism">Lock Mechanism</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#laser_cut_puzzle_box">Laser Cut Puzzle Box</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#code_electronics">Code & Electronics</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- SECTION 1: ABOUT -->
+
+    <div class="container-fluid p-0">
+      <section class="section1 p-3 p-lg-5 d-flex align-items-center" id="about">
+        <div class="w-100">
+          <span class="photo-mobile"><img class="img-fluid2 rounded-circle" src="./media/pfp.jpg"></span>
+
+          <h1 class="name-mobile mb-0">Tech Art Project &ndash; <span class="text-primary">Puzzle of Secrets</span></h1>
+
+          <div class="container">
+            <p class="introduction-mobile lead mb-4">
+              As part of the Tech Art course, we were tasked with creating an interactive art piece, which made use of some sort of 
+              technology, hence Tech Art. Our art installation for this exhibition focused on the various layers of a person and the similarities
+              between people and puzzle boxes. As you get you know a person, you learn more and more of their secrets, just as the more you
+              solve a puzzle box, the more secrets you find. Our installion allow for users to write and share valuable advice inside the first
+              box and then their secrets inside the inside box. These boxes where both locked until a puzzle was solved. The first comprised of
+              a simple riddle, while the second required some decryption of morse and binary codes.
+              
+              <br><br>
+              
+              I mainly contributed towards designing the laser cut box, the 3D printed parts, writing the code and building the 
+              electronics. My teammates focused more on building the pedastal and the decoration of the installation. The installing adding
+              integration was done as a team. The design work was completed in SolidWorks, while the code and electronics was done using an 
+              Arduino. The 3D print, laser cut and code files can be viewed on <a href="https://github.com/HariSelva/PuzzleOfSecrets" target="_blank">GitHub</a>.
+
+              <br><br>
+            
+              <img src="./media/Picture0.JPG" class="center">
+            </p>
+          </div>
+
+        </div>
+      </section>
+      <hr class="m-0">
+
+      <!-- SECTION 2: Lock Mechanism-->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="lock_mechanism">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Lock Mechanism</h2>
+          <div class="container">
+            The puzzle box needed to be able to be locked and then opened once the password was entered. As such, a simple deadbolt
+            style lock was created using SolidWorks and then 3D printed. The lock was controlled using a servo motor. The image below 
+            showcases lock mechanism CAD:
+            <br><br>
+            
+            <img src="./media/Picture1.png" class="center">
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Laser Cut Puzzle Box-->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="laser_cut_puzzle_box">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Laser Cut Puzzle Box</h2>
+          <div class="container">
+            The main container of the puzzle box was created using laser cut parts, which allowed for rapid prototyping. It was first 
+            designed in SolidWorks and then exported into a .dxf file which was used to laser cut the necessary parts. The below images 
+            showcases all the parts split between laser cut sheets, a .dxf file for one plywood sheet, and the final puzzle box after
+            it has been fully painted and assembled.
+
+            <br><br>
+            
+            <img src="./media/Picture2.png" class="center">
+            <br>
+            <img src="./media/Picture3.png" class="center">
+            <br>
+            <img src="./media/Picture4.jpg" class="center">
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Code & Electronics-->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="code_electronics">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Code & Electronics</h2>
+          <div class="container">
+            The electronics used in this project are: Arduino Uno, LCD Screen, LED Strips, Limit Switches, Rocker Switches, 
+            and Servo Motors. The LCD screen provided prompts to the user on when to enter the password and if the lock was opened. The 
+            rocker switches were used as a form of input from the user, while the limit switches were used to detect if the box was closed 
+            so that it can be relocked using the servo motors. The LED strips were used in the second puzzle, where one aspect of it included
+            decoding morse code. This can be seen in the GIF below. Lastly, the Uno was used to the run the code, which can be found 
+            on <a href="https://github.com/HariSelva/PuzzleOfSecrets" target="_blank">GitHub</a>.
+            <br><br>
+            
+            <img src="./media/Picture5.gif" class="center">
+          </div>
+        </div>
+      </section>
+      <hr class="m-0">
+    </div>
+
+    <script>
+      window.onscroll = () => {
+        updateScrollbar();
+      };
+
+      function updateScrollbar() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+      }
+    </script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="./js/confetti.js"></script> -->
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+    <script src="./js/resume.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+  </body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Kaurisan (Hari) Selvarasa</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Fourth Year Design Project &ndash; LiMar.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="shortcut icon" href="./media/icon/favicon.ico" type="image/x-icon">
+  </head>
+
+  <body id="page-top">
+    <div class="header">  
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <span class="d-block d-lg-none">Kaurisan (Hari) Selvarasa</span> <!-- on smaller screens, appears in navigation bar at top of page -->
+        <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="./media/pfp.jpg"></span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#Display_Mount">Display Mount</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#RFID_Reader_Mount">RFID Reader Mount</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#RFID_Tag_Casing">RFID Tag Casing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#GUI">GUI</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#photos">Photos</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- SECTION 1: ABOUT -->
+
+    <div class="container-fluid p-0">
+      <section class="section1 p-3 p-lg-5 d-flex align-items-center" id="about">
+        <div class="w-100">
+          <span class="photo-mobile"><img class="img-fluid2 rounded-circle" src="./media/pfp.jpg"></span>
+
+          <h1 class="name-mobile mb-0">Fourth Year Design Project &ndash; <span class="text-primary">LiMar</span></h1>
+
+          <div class="container">
+            <p class="introduction-mobile lead mb-4">
+              <br>
+              Our fourth year design project was to create sports field line marker attachment which would assist the operator in easily and more 
+              accurately paint the lines. Our design, LiMar, aims to help make sports field line marking easy, consistent, yet still affordable for the many stadiums with 
+              multiple sports fields to maintain. By making a modular add-on design for sports lining carts, and adding radio frequency 
+              identification (RFID) and speed measurement, the user is given highly accurate feedback on how well the sports lines are being 
+              marked, compared to the manual operation prior. This cuts down on the required man-hours, while increasing accuracy, and 
+              reliability. 
+              
+              <br><br>
+              
+              I worked on all aspects of the mechanical design using SolidWorks and contributed to programming the graphical user 
+              interface in Python. The sections below highlight the various aspects of design associated with the project. A compilation 
+              of all the pictures can be found in the photos section.
+            </p>
+          </div>
+
+        </div>
+      </section>
+      <hr class="m-0">
+
+      <!-- SECTION 2: Display Mount-->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="Display_Mount">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Display Mount</h2>
+          <div class="container">
+            To provide assistance to the operator, feedback would be given to them through the display (a 7IP-CAPLCD Display). As This
+            display had its electronics exposed it needed a protective casing, in addition to a way to mount it to the cart. The first
+            iteration had a combined design that served both as an enclosure and a mount. This is pictured below:
+            
+            <br><br>
+            
+            <img src="./media/Picture1.png" class="center">
+            <img src="./media/Picture2.png" class="center">
+
+            <br><br>
+
+            However, it was soon found that while this solution was sufficient, it was not ergonomic and would hurt the operator's neck 
+            over the course of one painting session. As well, it would make it difficult for the operator to view both the screen and 
+            the field cause unwanted inaccuracies due to focus issues. As such a redesign was required. This involved use a prebuilt
+            tablet mount, and designing only an enclosure for the display. This is shown below:
+            <br><br>
+            
+            <img src="./media/Picture3.png" class="center">
+            <img src="./media/Picture4.png" class="center">
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: RFID Reader Mount-->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="RFID_Reader_Mount">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">RFID Reader Mount</h2>
+          <div class="container">
+            This system made use of a Radio Frequency Identification (RFID) technology to assist the operator in painting straight lines.
+            RFID tags embedded within the ground underneath the lines would act as markers which can be used to determine the current
+            position and provide feedback. Thus the RFID reader needed to be mounted near the ground and on the side where the paint 
+            spray was located. It also needed to hold the battery which would provide power to the reader and arduino. The CAD and the 
+            final 3D printed design is shown below:
+            <br><br>
+            
+            <img src="./media/Picture5.png" class="center">
+            <img src="./media/Picture6.png" class="center">
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: RFID Tag Casing-->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="RFID_Tag_Casing">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">RFID Tag Casing</h2>
+          <div class="container">
+            As the RFID tags would need to be buried in the ground, a protective casing was designed. This casing made use of Solidwork's 
+            snap hook and groove feature to allow for a 3D printed part that could easily and securely be put together.
+            <br><br>
+            
+            <img src="./media/Picture7.png" class="center">
+            <img src="./media/Picture8.png" class="center">
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: GUI-->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="GUI">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">GUI</h2>
+          <div class="container">
+            The graphical user interface was created to provide information to the user. The interface was designed in python using the 
+            TKinter library. A mockup of the GUI can be seen below:
+            <br><br>
+            
+            <img src="./media/Picture9.png" class="center">
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Photos -->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="photos">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Photos &#128444;</h2>
+          <div class="container">
+            <div class="image-grid">
+              <img class="image-grid-col-1 image-grid-row-2" src="./media/Picture10.png" alt="">
+              <img src="./media/Picture11.png">
+              <img src="./media/Picture12.png">
+              <img src="./media/Picture13.png">
+              <img src="./media/Picture14.png">
+              <img src="./media/Picture15.png">
+              <img src="./media/Picture16.png">
+              <img src="./media/Picture17.png">
+              <img src="./media/Picture18.png">
+              <img src="./media/Picture19.png">
+              <img src="./media/Picture20.png">
+              <img src="./media/Picture21.png">
+              <img src="./media/Picture22.png">
+              <img src="./media/Picture23.png">
+              <img src="./media/Picture24.png">
+              <img src="./media/Picture25.png">
+              <img src="./media/Picture26.png">
+              <img src="./media/Picture27.png">
+              <img src="./media/Picture28.png">
+              <img class="image-grid-col-2 image-grid-row-1" src="./media/Picture29.png">
+              <img src="./media/Picture31.png">
+              <img src="./media/Picture32.png">
+              <img src="./media/Picture33.png">
+              <img src="./media/Picture34.png">
+              <img src="./media/Picture35.png">
+              <img src="./media/Picture36.png">
+              <img src="./media/Picture37.png">
+              <img class="image-grid-col-2 image-grid-row-1" src="./media/Picture38.png">
+              <img class="image-grid-col-1 image-grid-row-2" src="./media/Picture41.png">
+              <img class="image-grid-col-3 image-grid-row-1" src="./media/Picture39.png">
+              <img class="image-grid-col-2 image-grid-row-1" src="./media/Picture40.png">
+              
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="m-0">
+    </div>
+
+    <script>
+      window.onscroll = () => {
+        updateScrollbar();
+      };
+
+      function updateScrollbar() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+      }
+    </script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="./js/confetti.js"></script> -->
+    <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+    <script src="./js/resume.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+  </body>
+</html>
