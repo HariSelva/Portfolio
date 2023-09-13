@@ -38,7 +38,16 @@
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#photos">Photos</a>
+            <a class="nav-link js-scroll-trigger" href="#DesignParameters">Design Parameters</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#ImageDetection">Image Detection </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#HMI">HMI</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#Result">Result</a>
           </li>
         </ul>
       </div>
@@ -51,11 +60,23 @@
         <div class="w-100">
           <span class="photo-mobile"><img class="img-fluid2 rounded-circle" src="./media/pfp.jpg"></span>
 
-          <h1 class="name-mobile mb-0">Vision System for <span class="text-primary">Clumped Box Case</span></h1>
+          <h1 class="name-mobile mb-0">Clumped Box <span class="text-primary">Vision System</span></h1>
 
           <div class="custom-padding">
             <p class="introduction-mobile lead mb-4">
-              These fixtures were designed in SolidWorks using a
+              A project as part of the mechatronics systems integration course, was to implement an improvement in the conveyor system 
+              used during our labs. Our improvement aimed to fix the edge case where boxes would get clumped together. This happened 
+              for various reasons such as a box getting stuck during a previous section of the conveyor line and unstuck due to another
+              box hitting it, or even due to user error at spacing the boxes apart correctly. This is an issue, as when boxes are stuck 
+              together or too close, the pre-existing system for sorting the boxes would divert all of the boxes regardless of its type 
+              based on the first one. This is due to the nature of the diverter system that is part of the pre-existing system as seen 
+              below.
+              <center>
+                <video width="65%" height="50%" autoplay loop muted>
+                  <source src="./media/Diverter Sample 1.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </center>
             </p>
           </div>
 
@@ -63,42 +84,88 @@
       </section>
       <hr class="m-0">
 
-      <!-- SECTION 2: More Photos -->
+      <!-- SECTION 2: Design Parameters -->
       
-      <section class="section3 p-3 p-lg-5 d-flex timetime" id="photos">
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="DesignParameters">
         <div class="w-100">
-          <h2 class="mb-4 timeline-left-heading">Photos &#128444;</h2>
+          <h2 class="mb-4 timeline-left-heading">Design Parameters</h2>
           <div class="container">
-            <div class="image-grid">
-              <img src="./media/Tray.jpg" alt="">
-              <img src="./media/Fixture1.jpg" alt="">
-              <img src="./media/Fixture2.jpg" alt="">
-              <img src="./media/Fixture3.jpg" alt="">
-              <img src="./media/Fixture4v1 (1).jpg" alt="">
-              <img src="./media/Fixture4v1 (2).jpg" alt="">
-              <img src="./media/Fixture4v2 (1).jpg" alt="">
-              <img src="./media/Fixture4v2 (2).jpg" alt="">
-              <img src="./media/Fixture5 (1).jpg" alt="">
-              <img src="./media/Fixture5 (2).jpg" alt="">
-              <img src="./media/Fixture6 (1).jpg" alt="">
-              <img src="./media/Fixture6 (2).jpg" alt="">
-              <img src="./media/Fixture6 (3).jpg" alt="">
-              <img class="image-grid-col-2 image-grid-row-1" src="./media/Fixtures.png" alt="">
-              <img src="./media/Fixture7 (1).png" alt="">
-              <img src="./media/Fixture7 (2).png" alt="">
-              <img src="./media/Fixture8 (1).png" alt="">
-              <img src="./media/Fixture8 (2).png" alt="">
-              <img src="./media/Fixture9 (1).png" alt="">
-              <img src="./media/Fixture9 (2).png" alt="">
-              <img src="./media/Fixture10 (1).png" alt="">
-              <img src="./media/Fixture10 (2).png" alt="">
-              
-            </div>
+            There were a few design parameters that were set for this project. These are as follows:
+            <ol type="1">
+              <li>If a clump (2 boxes in close proximity) is detected, the system will divert the boxes, and let it go to an assumed accumulator, where an operator can help deal with the issue in a timely manner.</li>
+              <li>System will be able to detect two boxes with a maximum distance of one box length apart.</li>
+              <li>System will be able to detect groups of two objects, regardless of orientation (limited to a range of box sizes).</li>
+              <li>System should be able to flag, and relay clumped box information to the operator.</li>
+              <li>System should be able to retain all functionality from the reference case. In other words, the system should be an addition to the pre-existing conveyor system.</li>
+           </ol>
           </div>
         </div>
       </section>
       <hr class="m-0">
     </div>
+
+    <!-- SECTION 3: Image Detection -->
+      
+    <section class="section3 p-3 p-lg-5 d-flex timetime" id="ImageDetection">
+      <div class="w-100">
+        <h2 class="mb-4 timeline-left-heading">Image Detection</h2>
+        <div class="container">
+          To determine whether a clumped case was present, image detection was implemented. The existing conveyor architecture already 
+          included a camera and vision system to allow for the sorting of the boxes. Thus, to solve this problem, an additional script was 
+          implemented. By taking advantage of simple image detection techniques, clumped cases could be determined. This involved cropping 
+          the captured video so that all unnecessary visual noise could be removed. This is possible do to the controlled environment. A HSV 
+          (Hue Saturation and Value) mask can then be applied to this cropped frame. This allows for the filtering and removal of noise. Then 
+          using the built in contour detection within the OpenCV library, the boxes can be detected. Further filtering can be done if necessary 
+          by using the area of the detected polygons and removing false detections. The image below showcases a sample processed image 
+          (left) after running the contour algorithm on the masked image (right).
+
+          <br><br>
+
+          <img src="./media/ImageDetection.png" class="center">
+
+        </div>
+      </div>
+    </section>
+    <hr class="m-0">
+  </div>
+
+  <!-- SECTION 3: HMI -->
+      
+  <section class="section3 p-3 p-lg-5 d-flex timetime" id="HMI">
+    <div class="w-100">
+      <h2 class="mb-4 timeline-left-heading">Human Machine Interface (HMI)</h2>
+      <div class="container">
+        One of the required design parameters for this project was to be able to flag and relay this information to an operator. This is 
+        where the HMI comes in. A simple graphical user interface (GUI) was created using Ignition 8 Designer. MQTT, an internet of 
+        things (IOT) messaging protocal was used to retrieve the data from the vision system and thus allow for the flaging and relaying 
+        of relevant information. The GUI can be seen below. The video above also showcases the GUI flagging and counting the number of 
+        clumped cases.
+
+        <br><br>
+
+        <img src="./media/HMI.png" class="center">
+
+
+      </div>
+    </div>
+  </section>
+  <hr class="m-0">
+</div>
+
+<!-- SECTION 3: Result -->
+      
+<section class="section3 p-3 p-lg-5 d-flex timetime" id="Result">
+  <div class="w-100">
+    <h2 class="mb-4 timeline-left-heading">Result</h2>
+    <div class="container">
+      After implementing this new add-on to the existing conveyor system, it was able to work perfectly with it detecting and diverting 
+      all cases where the boxes were too close together (clumped cases). As well, the HMI was able to consistently flag and relay the 
+      correct information.
+    </div>
+  </div>
+</section>
+<hr class="m-0">
+</div>
 
     <script>
       window.onscroll = () => {
