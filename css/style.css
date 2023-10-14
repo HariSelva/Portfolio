@@ -627,6 +627,24 @@ header:before {
 }
 
 .btn {
+	display:inline-block; 
+	padding:8px 18px 8px; 
+	text-transform:uppercase; 
+	border:1px solid;
+}
+
+.btn, .btn.inverse:hover {
+	color:#FFFFFF; 
+	background-color:#4285F4; 
+	border-color:#4285F4;
+}
+.btn:hover, .btn.inverse {
+	color:inherit; 
+	background-color:transparent; 
+	border-color:inherit;
+}
+
+/* .btn {
 	padding: 5px 15px;
 	text-decoration: none;
 	background: transparent;
@@ -658,7 +676,7 @@ header:before {
 	-moz-box-shadow: 2px 2px 0 transparent;
 	-ms-box-shadow: 2px 2px 0 transparent;
 	box-shadow: 2px 2px 0 transparent;
-}
+} */
 
 @media screen and (max-width: 1300px) {
 	#timeline {

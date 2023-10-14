@@ -38,7 +38,10 @@
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#photos">Photos</a>
+            <a class="nav-link js-scroll-trigger" href="#parameters">Design Parameters</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#process">Design Process</a>
           </li>
         </ul>
       </div>
@@ -55,7 +58,14 @@
 
           <div class="custom-padding">
             <p class="introduction-mobile lead mb-4">
-              These fixtures were designed in SolidWorks using a
+              As part of my CAD course, we were tasked with designing a dynamic system and animating it. I am quite interested in 
+              robotics and want to eventually be able to make a robot myself. As such I chose to make a concept design for a 3D printable 
+              Spider Quad Robot. 
+
+              <br><br>
+    
+              <img src="./media/QuadRobotFinalDesign.png" class="center">
+
             </p>
           </div>
 
@@ -63,40 +73,47 @@
       </section>
       <hr class="m-0">
 
-      <!-- SECTION 2: More Photos -->
+      <!-- SECTION 2: Design Parameters -->
       
-      <section class="section3 p-3 p-lg-5 d-flex timetime" id="photos">
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="parameters">
         <div class="w-100">
-          <h2 class="mb-4 timeline-left-heading">Photos &#128444;</h2>
+          <h2 class="mb-4 timeline-left-heading">Design Parameters &#128444;</h2>
           <div class="container">
-            <div class="image-grid">
-              <img src="./media/Tray.jpg" alt="">
-              <img src="./media/Fixture1.jpg" alt="">
-              <img src="./media/Fixture2.jpg" alt="">
-              <img src="./media/Fixture3.jpg" alt="">
-              <img src="./media/Fixture4v1 (1).jpg" alt="">
-              <img src="./media/Fixture4v1 (2).jpg" alt="">
-              <img src="./media/Fixture4v2 (1).jpg" alt="">
-              <img src="./media/Fixture4v2 (2).jpg" alt="">
-              <img src="./media/Fixture5 (1).jpg" alt="">
-              <img src="./media/Fixture5 (2).jpg" alt="">
-              <img src="./media/Fixture6 (1).jpg" alt="">
-              <img src="./media/Fixture6 (2).jpg" alt="">
-              <img src="./media/Fixture6 (3).jpg" alt="">
-              <img class="image-grid-col-2 image-grid-row-1" src="./media/Fixtures.png" alt="">
-              <img src="./media/Fixture7 (1).png" alt="">
-              <img src="./media/Fixture7 (2).png" alt="">
-              <img src="./media/Fixture8 (1).png" alt="">
-              <img src="./media/Fixture8 (2).png" alt="">
-              <img src="./media/Fixture9 (1).png" alt="">
-              <img src="./media/Fixture9 (2).png" alt="">
-              <img src="./media/Fixture10 (1).png" alt="">
-              <img src="./media/Fixture10 (2).png" alt="">
-              
-            </div>
+            There were a few design parameters that were set for this project. These are as follows:
+            <ol type="1">
+              <li>Needs to have at least 6 unique parts</li>
+              <li>Needs to be animated and show the motion of the object</li>
+              <li>Make use of Chebyshev Lambda linkage</li>
+           </ol>
+           The first two parameters were from the course's project outline. The other 3 were self-imposed. At the time, I had discovered
+           the interesting mechanism of the Chebyshev Lambda 4-bar linkage and this seemed like the perfect place to use it.
           </div>
         </div>
       </section>
+
+      <!-- SECTION 2: Design Process -->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="process">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Design Process &#128444;</h2>
+          <div class="container">
+            This QuadRobot concept will be simple 4-legged robot, that can be controlled using an Arduino Microcontroller. The legs are driven 
+            motors connected to a four-bar linkage, and more specifically the Chebyshev lambda linkage. The special property of this linkage is 
+            that it can take rotational motion and convert it into an approximate straight-line motion. This is perfect for this usecase. 
+            A tracing of the linkage's movement is shown in the figure below.
+
+            <br><br>
+  
+            <figure>
+              <img src="./media/ChebyshevLambdaMechanism.png" class="center">
+              <figcaption>Retrieved from https://demonstrations.wolfram.com/ChebyshevsLambdaMechanism/</figcaption>
+            </figure>
+
+            
+          </div>
+        </div>
+      </section>
+
       <hr class="m-0">
     </div>
 
