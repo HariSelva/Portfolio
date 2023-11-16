@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href="#problem">Problem</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#DesignParameters">Design Parameters</a>
@@ -56,21 +56,20 @@
     <!-- SECTION 1: ABOUT -->
 
     <div class="container-fluid p-0">
-      <section class="section1 p-3 p-lg-5 d-flex align-items-center" id="about">
+      <section class="section1 p-3 p-lg-5 d-flex align-items-center" id="problem">
         <div class="w-100">
           <span class="photo-mobile"><img class="img-fluid2 rounded-circle" src="./media/pfp.jpg"></span>
 
           <h1 class="name-mobile mb-0">Clumped Box <span class="text-primary">Vision System</span></h1>
 
-          <div class="custom-padding">
+          <div class="container">
             <p class="introduction-mobile lead mb-4">
               A project as part of the mechatronics systems integration course, was to implement an improvement in the conveyor system 
-              used during our labs. Our improvement aimed to fix the edge case where boxes would get clumped together. This happened 
-              for various reasons such as a box getting stuck during a previous section of the conveyor line and unstuck due to another
-              box hitting it, or even due to user error at spacing the boxes apart correctly. This is an issue, as when boxes are stuck 
-              together or too close, the pre-existing system for sorting the boxes would divert all of the boxes regardless of its type 
-              based on the first one. This is due to the nature of the diverter system that is part of the pre-existing system as seen 
-              below.
+              used during our labs. This system consisted of several conveyor belts in a circle, each with a diverter arm. A camera at 
+              the start would detect the shape on the box and then sort it at the corresponding diverter arm. A problem that we noticed 
+              was that if the boxes were too close together on the conveyor belt, the diverter system would divert the whole 
+              group of boxes (see the video below for an idea of what happens). This would cause the sorting of all following 
+              boxes to be incorrect. Our goal was to implement an addition to the current system to fix this problem.
               <center>
                 <video width="65%" height="50%" autoplay loop muted>
                   <source src="./media/Diverter Sample 1.mp4" type="video/mp4">
@@ -92,11 +91,13 @@
           <div class="container">
             There were a few design parameters that were set for this project. These are as follows:
             <ol type="1">
-              <li>If a clump (2 boxes in close proximity) is detected, the system will divert the boxes, and let it go to an assumed accumulator, where an operator can help deal with the issue in a timely manner.</li>
+              <li>If a clump (2 or more boxes in close proximity) is detected, the system will divert the boxes, and let it go to an 
+                assumed accumulator, where an operator can help deal with the issue in a timely manner.</li>
               <li>System will be able to detect two boxes with a maximum distance of one box length apart.</li>
               <li>System will be able to detect groups of two objects, regardless of orientation (limited to a range of box sizes).</li>
               <li>System should be able to flag, and relay clumped box information to the operator.</li>
-              <li>System should be able to retain all functionality from the reference case. In other words, the system should be an addition to the pre-existing conveyor system.</li>
+              <li>System should be able to retain all functionality from the reference case. In other words, the system should be an 
+                addition to the pre-existing conveyor system.</li>
            </ol>
           </div>
         </div>
@@ -111,13 +112,13 @@
         <h2 class="mb-4 timeline-left-heading">Image Detection</h2>
         <div class="container">
           To determine whether a clumped case was present, image detection was implemented. The existing conveyor architecture already 
-          included a camera and vision system to allow for the sorting of the boxes. Thus, to solve this problem, an additional script was 
-          implemented. By taking advantage of simple image detection techniques, clumped cases could be determined. This involved cropping 
-          the captured video so that all unnecessary visual noise could be removed. This is possible do to the controlled environment. A HSV 
-          (Hue Saturation and Value) mask can then be applied to this cropped frame. This allows for the filtering and removal of noise. Then 
-          using the built in contour detection within the OpenCV library, the boxes can be detected. Further filtering can be done if necessary 
-          by using the area of the detected polygons and removing false detections. The image below showcases a sample processed image 
-          (left) after running the contour algorithm on the masked image (right).
+          included a camera and vision system to allow for the sorting of the boxes. Thus, to solve this problem, an additional script 
+          was implemented. By taking advantage of simple image detection techniques, clumped cases could be determined. This involved 
+          cropping the captured video so that all unnecessary visual noise could be removed. This was possible due to the controlled 
+          environment. A HSV (Hue, Saturation, and Value) mask was then applied to this cropped frame. This allowed for the filtering 
+          and removal of any additional noise. Then using the built in contour detection within the OpenCV library, the boxes can be 
+          detected. Further filtering was done by using the area of the detected polygons and removing false detections. The image below 
+          showcases a sample processed image (left) after running the contour algorithm on the masked image (right).
 
           <br><br>
 
@@ -137,13 +138,12 @@
       <div class="container">
         One of the required design parameters for this project was to be able to flag and relay this information to an operator. This is 
         where the HMI comes in. A simple graphical user interface (GUI) was created using Ignition 8 Designer. MQTT, an internet of 
-        things (IOT) messaging protocal was used to retrieve the data from the vision system and thus allow for the flaging and relaying 
-        of relevant information. The GUI can be seen below. The video above also showcases the GUI flagging and counting the number of 
-        clumped cases.
+        things (IOT) messaging protocal, was used to retrieve the data from the vision system and thus allow for the flaging and relaying 
+        of relevant information. The GUI can be seen below.
 
         <br><br>
 
-        <img src="./media/HMI.png" class="center">
+        <img src="./media/HMI.png" style="width: 35%; height: 35%;" class="center">
 
 
       </div>
@@ -158,9 +158,14 @@
   <div class="w-100">
     <h2 class="mb-4 timeline-left-heading">Result</h2>
     <div class="container">
-      After implementing this new add-on to the existing conveyor system, it was able to work perfectly with it detecting and diverting 
-      all cases where the boxes were too close together (clumped cases). As well, the HMI was able to consistently flag and relay the 
-      correct information.
+      After completing the clumped box detection algorithm, it was integrated into the already existing shape detection algorithm, to 
+      ensure all features were retained. Then with the use of Node-Red, the diversion of the clumped boxes was implemented. Putting 
+      these 3 components (algorithm, hmi, and diverter control), we were able to successfully detect and divert all cases where the 
+      boxes were too close together during tests. As well, the HMI was able to consistently flag and relay the correct information. A 
+      screen capture of the algorithm detecting clumped cases (note the red border on the window) is shown below. The video at the top 
+      of this page also showcases the system successfully diverting a clumped case and flagging it on the HMI.
+
+      <img src="./media/VisionSystemScreenCap.gif" class="center">
     </div>
   </div>
 </section>

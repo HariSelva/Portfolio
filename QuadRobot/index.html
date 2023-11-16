@@ -35,37 +35,38 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href="#problem">Problem</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#parameters">Design Parameters</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#process">Design Process</a>
+            <a class="nav-link js-scroll-trigger" href="#solution">Solution</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#result">Results and Next Steps</a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <!-- SECTION 1: ABOUT -->
+    <!-- SECTION 1: Problem -->
 
     <div class="container-fluid p-0">
-      <section class="section1 p-3 p-lg-5 d-flex align-items-center" id="about">
+      <section class="section1 p-3 p-lg-5 d-flex align-items-center" id="problem">
         <div class="w-100">
           <span class="photo-mobile"><img class="img-fluid2 rounded-circle" src="./media/pfp.jpg"></span>
 
           <h1 class="name-mobile mb-0">3D Printable Spider Quad Robot <span class="text-primary">Concept</span></h1>
 
-          <div class="custom-padding">
+          <div class="container">
             <p class="introduction-mobile lead mb-4">
+              <img src="./media/QuadRobotFinalDesign.png" style="width: 35%; height: 35%;" class="center">
+
               As part of my CAD course, we were tasked with designing a dynamic system and animating it. I am quite interested in 
-              robotics and want to eventually be able to make a robot myself. As such I chose to make a concept design for a 3D printable 
-              Spider Quad Robot. 
-
-              <br><br>
-    
-              <img src="./media/QuadRobotFinalDesign.png" class="center">
-
+              robotics and want to eventually be able to make a robot myself. As such I chose to make a concept design of a quadruaped 
+              (4-legged) robot. However, unlike the traditional quadruped robots that use 3 motors/joints per leg, I wanted to see if 
+              there was a way to simplify it.
             </p>
           </div>
 
@@ -77,39 +78,77 @@
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="parameters">
         <div class="w-100">
-          <h2 class="mb-4 timeline-left-heading">Design Parameters &#128444;</h2>
+          <h2 class="mb-4 timeline-left-heading">Design Parameters</h2>
           <div class="container">
             There were a few design parameters that were set for this project. These are as follows:
             <ol type="1">
               <li>Needs to have at least 6 unique parts</li>
               <li>Needs to be animated and show the motion of the object</li>
-              <li>Make use of Chebyshev Lambda linkage</li>
+              <li>Minimize the amount of motors required for motion</li>
+              <li>Should be 3D printable, in case I want to build it in the future</li>
            </ol>
-           The first two parameters were from the course's project outline. The other 3 were self-imposed. At the time, I had discovered
-           the interesting mechanism of the Chebyshev Lambda 4-bar linkage and this seemed like the perfect place to use it.
+           Note that the first two parameters were from the course's project outline, while the other 2 were self-imposed.
           </div>
         </div>
       </section>
 
-      <!-- SECTION 2: Design Process -->
+      <!-- SECTION 2: Solution -->
       
-      <section class="section3 p-3 p-lg-5 d-flex timetime" id="process">
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="solution">
         <div class="w-100">
-          <h2 class="mb-4 timeline-left-heading">Design Process &#128444;</h2>
+          <h2 class="mb-4 timeline-left-heading">Solution</h2>
           <div class="container">
-            This QuadRobot concept will be simple 4-legged robot, that can be controlled using an Arduino Microcontroller. The legs are driven 
-            motors connected to a four-bar linkage, and more specifically the Chebyshev lambda linkage. The special property of this linkage is 
-            that it can take rotational motion and convert it into an approximate straight-line motion. This is perfect for this usecase. 
-            A tracing of the linkage's movement is shown in the figure below.
+            This design concept will be simple 4-legged robot, that can be controlled using an Arduino microcontroller. The legs are 
+            driven by motors connected to a four-bar linkage known as the Chebyshev lambda linkage. The special property 
+            of this linkage is that it can take rotational motion and convert it into an approximate straight-line motion. A tracing of 
+            the linkage's movement is shown in the figure below. This property is perfect for this usecase as it simplifies the leg from 
+            a 3 motor/joint design to a single motor design. This is significant financially, as it reduces the total number of motors 
+            required from 12 to 4.
 
-            <br><br>
-  
             <figure>
-              <img src="./media/ChebyshevLambdaMechanism.png" class="center">
+              <img src="./media/ChebyshevLambdaMechanism.png" style="width: 35%; height: 35%;" class="center">
               <figcaption>Retrieved from https://demonstrations.wolfram.com/ChebyshevsLambdaMechanism/</figcaption>
             </figure>
 
+            The linkage was adapted and then applied to this concept design, along with additional parts to form the leg.
+            The leg design is shown below.
+
+            <figure>
+              <img src="./media/LegSubAssemblyAnimated.gif" style="width: 35%; height: 35%;" class="center">
+            </figure>
+
+            With the leg designed, the rest of the body can be designed around the leg sub-assembly.This quadruped robot design took 
+            inspiration from insects for the aesthetics of the robot. As well, care was given to ensure that parts were designed in such 
+            a way to allow for easy 3D printing. This was done by designing in a manner which avoided support material if possible, 
+            and by adding in tolerances to account for shrinkage during the printing process.
+
+          </div>
+        </div>
+      </section>
+
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="result">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Results and Next Steps</h2>
+          <div class="container">
+            Through the use of SolidWorks, an assembly model of the final design concept was created and a motion study was created to 
+            visualize the movement of the legs. This is shown in the figure below.
             
+            <figure>
+              <img src="./media/FullAssemblyAnimated.gif" class="center">
+            </figure>
+
+            This solution has achieved most of the goals set out for this project. Some of the next steps are as follows:
+            <ol type="1">
+              <li>Due to the use of a 4 bar linkage, the legs only have one degree of freedom. This means a lack of variety in the 
+                movement, with it only being able to move forwards and backwards. Other mechanisms can be implemented to potentially add 
+                more variety to the robot such as turning.</li>
+              <li>As there is only a limit degree of freedom, the robot doesn't really need 1 motor per leg. A single motor can be 
+                attached via a gear mechanism to control all the legs. This would also serve to eliminate the need for timing on 
+                legs.</li>
+              <li>Access to the battery and the Arduino is limited when the cover is installed. Additional design features such as a 
+                battery cover on the underside can be added to provide easy access without needing to always disassemble the robot.</li>
+              <li>Actually 3D print and test the mechanism with the electronics</li>
+           </ol>
           </div>
         </div>
       </section>

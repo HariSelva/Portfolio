@@ -35,7 +35,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href="#problem">Problem</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#solution">Solution</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#Display_Mount">Display Mount</a>
@@ -50,6 +53,9 @@
             <a class="nav-link js-scroll-trigger" href="#GUI">GUI</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#results">Results and Next Steps</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#photos">Photos</a>
           </li>
         </ul>
@@ -59,7 +65,7 @@
     <!-- SECTION 1: ABOUT -->
 
     <div class="container-fluid p-0">
-      <section class="section1 p-3 p-lg-5 d-flex align-items-center" id="about">
+      <section class="section1 p-3 p-lg-5 d-flex align-items-center" id="problem">
         <div class="w-100">
           <span class="photo-mobile"><img class="img-fluid2 rounded-circle" src="./media/pfp.jpg"></span>
 
@@ -68,17 +74,14 @@
           <div class="container">
             <p class="introduction-mobile lead mb-4">
               <br>
-              Our fourth-year design project was to create sports field line marker attachment which would assist the operator in easily 
-              and more accurately paint the lines. Our design, LiMar, aims to help make sports field line marking easy, consistent, yet 
-              still affordable for the many stadiums with multiple sports fields to maintain. By making a modular add-on design for sports 
-              lining carts and adding radio frequency identification (RFID) and speed measurement, the user is given highly accurate feedback 
-              on how well the sports lines are being marked, compared to the manual operation prior. This cuts down on the required person-hours, while increasing accuracy, and reliability.
-              
-              <br><br>
-              
-              I worked on all aspects of the mechanical design using SolidWorks and contributed to programming the graphical user 
-              interface in Python. The sections below highlight the various aspects of design associated with the project. A compilation 
-              of all the pictures can be found in the photos section.
+              Our forth-year design project aimed to improve how line markings on sports fields are painted. Currently, at the start of 
+              the year, the field maintence team spends about 10-20 manhours/field to measure, mark and then paint the field lines. Then 
+              every week, the team spends about 0.5-1 manhours/field to paint over the previous lines to ensure they stay visible and 
+              aren't fading. This is done weekly or sometimes bi-weekly depending on the condition of the painted lines. This is to 
+              avoid the huge time commitment of painting the field from scratch if the lines were allowed to fade completely. This is 
+              waste of paint, time, and labour. Especially as this weekly painting is continued even during weeks when no-one is using 
+              the field.
+
             </p>
           </div>
 
@@ -86,7 +89,27 @@
       </section>
       <hr class="m-0">
 
-      <!-- SECTION 2: Display Mount-->
+      <!-- SECTION 2: Solution-->
+            
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="solution">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Solution</h2>
+          <div class="container">
+            Our proposed solution to this problem was to create an attachment for the line marker cart. This attachment would assist 
+            the operator in easily and more accurately paint the lines. It would serve to reduce the need for the large time investment 
+            to start from scratch and thus eliminate the need for weekly re-painting. This attachment would make use of RFID tags 
+            buried within the ground to localize itself and provide feedback to the operator. With the addition of other sensors such as 
+            speed measurement and a camera, additional feedback can be provided to help the operator. 
+              
+            <br><br>
+
+            I worked on all aspects of the mechanical design using SolidWorks and contributed to the programming of the graphical user 
+            interface in Python. The sections below highlight the various aspects of design associated with the project.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: Display Mount-->
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="Display_Mount">
         <div class="w-100">
@@ -104,9 +127,9 @@
             <br><br>
 
             However, it was soon found that while this solution was sufficient, it was not ergonomic and would hurt the operator's neck 
-            over the course of one painting session. As well, it would make it difficult for the operator to view both the screen and 
-            the field cause unwanted inaccuracies due to focus issues. As such a redesign was required. This involved use a prebuilt 
-            tablet mount and designing only an enclosure for the display. This is shown below:
+            during operation. As well, it would make it difficult for the operator to view both the screen and the field causing 
+            unwanted inaccuracies due to focus issues. As such a redesign was required. This involved use a prebuilt tablet mount and 
+            designing only an enclosure for the display. This is shown below:
 
             <br><br>
             
@@ -116,7 +139,7 @@
         </div>
       </section>
 
-      <!-- SECTION 3: RFID Reader Mount-->
+      <!-- SECTION 4: RFID Reader Mount-->
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="RFID_Reader_Mount">
         <div class="w-100">
@@ -136,7 +159,7 @@
         </div>
       </section>
 
-      <!-- SECTION 4: RFID Tag Casing-->
+      <!-- SECTION 5: RFID Tag Casing-->
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="RFID_Tag_Casing">
         <div class="w-100">
@@ -153,14 +176,15 @@
         </div>
       </section>
 
-      <!-- SECTION 5: GUI-->
+      <!-- SECTION 6: GUI-->
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="GUI">
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">GUI</h2>
           <div class="container">
             The graphical user interface was created to provide information to the user. The interface was designed in python using the 
-            TKinter library. A mock-up of the GUI can be seen below:
+            TKinter library. A live feed from the camera was included within the GUI to ensure the operator has a clear view of the field 
+            as well as the provided feedback. A mock-up of the GUI can be seen below:
 
             <br><br>
             
@@ -169,7 +193,33 @@
         </div>
       </section>
 
-      <!-- SECTION 6: Photos -->
+      <!-- SECTION 7: Results and Next Steps-->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="results">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Results and Next Steps</h2>
+          <div class="container">
+            When assembled onto the cart, this system was able to give some rough feedback to the operator on whether they were following 
+            the line or not. However, there are many improvements that can be made. These are as follows:
+
+            <ol type="1">
+              <li>An attempt was made at an algorithm that could detect pre-existing lines and use that data in addition to the RFID data 
+                to create a virtual line for the operator to follow. This however, did not work due to the large amount of noise due to 
+                the grassy environment. More research can be put into this aspect.
+              </li>
+              <li>The range of the RFID tags were quite limited especially when under dirt. More research can be done to either amplify  
+                the signal or find a better RFID tag/reader.
+              </li>
+              <li>Better integration of the electronics as currently two different batteries were used. One for the reader, and another 
+                for the display screen and the Jetson Nano.
+              </li>
+           </ol>
+            
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: Photos -->
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="photos">
         <div class="w-100">
