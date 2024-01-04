@@ -735,3 +735,19 @@ header:before {
 		left: 0;
 	}
 }
+
+ul.circle {
+	list-style-type: circle;
+}
+  
+ul.square {
+list-style-type: square;
+}
+
+ol.upper-roman {
+list-style-type: upper-roman;
+}
+
+ol.lower-alpha {
+list-style-type: lower-alpha;
+}

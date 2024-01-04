@@ -96,22 +96,52 @@
               <li>Needs to inherently stable (i.e. it should be able to balance without additional hardware or software)</li>
               <li>Should have at least 3 degrees of freedom to allow for versatility in future projects</li>
               <li>Should be multi-terrain</li>
+              <li>Stay within a budget of $400</li>
               <li>Needs to have a platform/area on which additional hardware (i.e. LIDAR, Nerf Turret, Robotic Arm, etc.) can be mounted</li>
               <li>System should be able to support its own weight as well as have capacity for additional hardware</li>
               <li>Parts should be either 3D printed or off the shelf</li>
-              <li>Stay within a budget of $400</li>
            </ul>
-           The first three parameters defined the type of robot for this project, while the rest ensured it would be successful. Based 
-           on these parameters, a hexapod design was decided upon for this robotic platform. A hexapod has the ability to walk 
-           using a tripod gait, which allows it to maintain its balance when walking. This ability ensure additional hardware and/or 
-           software is unnecessary to keep its balance, which keeps the project from becoming unneccesarily complex.
+
+           The first four parameters defined the type of robot for this project, while the rest ensured it would be successful. Based 
+           on these parameters, a decision matrix was created to decide what type of robot would best fit this project. This is shown 
+           below:
+
+           <br>
+           <img src="./media/Decision Matrix.png" style="width: 75%; height: 75%;" class="center">
+           <br>
+
+           In terms of cost, the deciding factor was the number of motors required for each type of robot. The various motors required 
+           range from 12-20 dollars each, which I've considered to be about the same price range. As such the more motors, the more costly. The tank 
+           costs the least with only two motors. In second is the holonomic vehicle with 3 motors in a kiwi drive configuration. Then 
+           the aerial drone with 4 motors in a quadcopter configuration and the hexapod in last due to each leg requiring 3 motors for 
+           a total of 18 motors minimum.
 
            <br><br>
 
-           Although a holonomic wheeled robot would also meet the stable and the 3 DOF criteria, a hexapod has the ability to navity a 
-           larger variety of terrain. As well, it also has more degrees of freedom. While other legged robots have the same advantages 
-           of a hexapod, they require more legs which increases the cost of this project drastically. As the 6 legged hexapod, is the 
-           minimum number of legs to ensure an inherently stable robot, this design was chosen for this project.
+           Concerning the robot being multi-terrain, the aerial drone is the best as it can just fly over any terrain, followed by the 
+           legged robot, due to its great maneuverability. Then comes the tank due to the tank treads allow for it to traverse a wider
+           variety of terrain. Lastly is the holonomic robot as it would only be able function on smooth flat surfaces.
+
+           <br><br>
+
+           Regarding degrees of freedom, the aerial drone and the hexapod both have 6 degrees of freedom and are thus the best options. 
+           The holonomic vehicle has 3 degrees of freedom putting it in third, with the tank taking last place with only 2 degrees of 
+           freedom.
+
+           <br><br>
+
+           In terms of stability/balance, both the holonomic vehicle and the tank are the best as their configuration means they are 
+           unlikely to tip over or require extra hardware/software to prevent them from tipping over. The hexapod come in third, due 
+           to its tripod gait which grants it increased stability, but do the nature of legged robots, changes in terrain height can 
+           cause stability issues. In last is the aerial drone, as some sort of flight controller is neccessary to ensure, it can 
+           stably fly/hover in the air.
+
+           <br><br>
+
+           After calculating the scores, it was seen that the best option was the aerial drone. However, in the end the next best choice 
+           was taken, due to the lack of any large open areas required for testing or using an aerial drone. As well, I currently lack 
+           the skills to pilot a drone, and did not feel it would be appropriate to learn to do so with my own custom drone. This 
+           option has been left in the decision matrix for completeness.
 
           </div>
         </div>
@@ -123,11 +153,42 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">Sourcing Parts</h2>
           <div class="container">
-            Before any design work can begin, a few critical parts need to be sourced. These parts include the servos, battery, 
-            microcontroller, and ball bearings. These parts will be bought off the shelf and will be used to dictate the size of the 
-            hexapod.
+            Before any design work can begin, a few critical parts needed to be sourced. These parts include the servos, battery, 
+            microcontroller, and ball bearings. These parts will be bought off the shelf and will be used to dictate the sizing of 
+            various components of the robot. While these components may change throughout the design phase, it is a good starting 
+            point from which the design can be made. Through the use of parametric design, measurements can be easily changed to fit 
+            the new parts, adjusting the design as needed. The parts that were chosen are shown in the picture below, along with an 
+            explanation for why these parts were chosen.
 
-            In terms of servo, this hexapod will have 3 per leg, for a total of 18 servos. These 
+            <br><br>
+            <img src="./media/SourcedParts.png" style="width: 75%; height: 75%;" class="center">
+
+            In terms of servos, this hexapod will have 3 per leg, for a total of 18. These servos will need to have enough torque to support 
+            the robot as well as rotate enough to allow for a wide range of movement. The problem with choosing a servo in the beginning is 
+            that you can't know the amount of torque required without knowing the weight and configuration of the hexapod. As such a relatively 
+            high torque servo, the <a href="https://www.aliexpress.us/item/32719897757.html?spm=a2g0o.order_list.order_list_main.10.7c471802OBIMB9&gatewayAdapt=4itemAdapt" target="_blank"><strong>DS3230</strong></a>, 
+            was chosen. This supposedly has 30 kg&#183;cm of torque (at 5v), which should be more than sufficient. Math will be done when a finalized, 
+            or semi-finalized design has been completed to ensure that these servos are adequate.
+
+            <br><br>
+
+            Regarding the battery, it should be as compact as possible, and be able to provide at least 18 amps of current. Most servos can pull 
+            up to an amp or more when under loaded conditions, leading to this condition. I ended up choosing the 
+            <a href="https://www.amazon.com/gp/product/B071D4J7VV/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1" target="_blank"><strong>Zeee 2S Lipo Battery</strong></a> 
+            with 7.4V, 80C, and 7200mAh. Based on this rating, it can supply up to 576 amps, which is more than plenty. Unfortunately, the 
+            voltage is a little too high for the servos (max of 6.8v) which preferably would be run at 5-6v to ensure high torque, 
+            without damaging the servos.
+
+            <br><br>
+
+            The microcontroller and the ball bearings were the easiest to determine. An 
+            <a href="https://www.amazon.com/ELEGOO-ATmega2560-ATMEGA16U2-Projects-Compliant/dp/B01H4ZDYCE?ref_=ast_sto_dp&th=1" target="_blank"><strong>ELEGOO MEGA 2560</strong></a>, 
+            will be used as the microcontroller. The Mega was chosen, as it has more memory, which will be important if inverse 
+            kinematic calculations need to be done. As well, it has more i/o ports which is critical, as we need at least 18 for each 
+            servo and more, if sensors or transmitters are to be added. The Elegoo variety was chosen over the Arduino, due to the fact 
+            that both boards, are equal regarding their specifications but the Elegoo costs half as much as the Arduino. Lastly, the 
+            <a href="https://www.amazon.ca/Bearings-608-2RS-Skateboard-Bearing-Scooters/dp/B08G487FPL/ref=sr_1_6?th=1" target="_blank"><strong>608RS ball bearings</strong></a> 
+            will be used, due to the fact that these are very common and cheap while meeting the required function.
 
           </div>
         </div>

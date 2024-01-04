@@ -132,11 +132,11 @@
                   <b><u>Problem:</u></b>
                   <ui>
                     <li>
-                      Goal is to design an multi-terrain vehicular platform for use in future projects such as a mobile nerf turret or 
-                      autonomous mobile robot.
+                      Goal is to design a multi-terrain vehicular platform that can be adapted for future projects, such as for creating an autonomous 
+                      mobile robot or mobile nerf turret
                     </li>
                     <li>
-                      Platform should be stable by nature without the need for additional control systems.
+                      Needs to be inherently stable (i.e. minimal need of a control system for balance)
                     </li>
                   </ui>
                 </p>
@@ -146,10 +146,12 @@
                   <br>
                   <ui>
                     <li>
-                      Designed a hexapod, that can take advantage of the tripod gait, to ensure natural stability during locomotion.
+                      Designed a robot with legs, instead of wheels/tracks, for increased versatility across difficult terrain. There are three joints per
+                      leg, which is a simplification of an actual spider leg
                     </li>
                     <li>
-                      Used trigonometry and coordinate frames to calculate the forward/inverse kinematics as well as the leg's workspace
+                      Designed the robot to have six legs (aka hexapod) so as to take advantage of the tripod gait, which helps ensure natural stability 
+                      during locomotion and simplifies the control system
                     </li>
                   </ui>
                 </p>
@@ -158,8 +160,8 @@
                   <b><u>Technical Skills:</u></b>
                   <ui>
                     <li>
-                      SolidWorks (parts, sub-assemblies, assemblies, motion studies), Inverse Kinematics, Python, MATLAB, Part Sourcing,
-                      Design for Manufacturability, Budgetting, Research
+                      SolidWorks (parts, assemblies, motion studies), Forward/Inverse Kinematics, MATLAB, Bill of Materials (BoM),
+                      Design for Manufacturability, GD&T, Budgetting, Decision Matrices
                     </li>
                   </ui>
                 </p>
@@ -173,22 +175,26 @@
               <img src="./media/img/Hexapod.gif">
             </div>
           </div>
-          
-          <!-- PROJECT 2: Vision System for Clumped Box Case -->
+
+          <!-- PROJECT 2: 3D Printed Fixtures -->
 
           <div style="display:inline-block;">
             <div class="project-left">
-              <p class="project-font">Vision System for Clumped Box Case</p>
+              <p class="project-font">Fixtures for Coordinate Measuring Machine (CMM)</p>
               <p class="project-font2">
                 <p>
                   <b><u>Problem:</u></b>
                   <ui>
                     <li>
-                      Goal is to improve the current existing conveyor system.
+                      Goal is to improve the work flow for quality assurance inspectors and increase efficiency and accuracy when 
+                      setting up parts for measuring in the CMM.
                     </li>
                     <li>
-                      In the old sorting system, if boxes are clumped together, inaccuracies arise due to the divertor arm diverting the 
-                      set of clumped boxes instead of a single box.
+                      Two main issues:
+                      <ul class="circle">
+                        <li>Standard fixture devices are loosely stored in bins, which reduces work efficiency.</li>
+                        <li>Irregularity of parts means that it is difficult to consistently and reliably fix parts on the CMM.</li>
+                       </ul>
                     </li>
                   </ui>
                 </p>
@@ -198,11 +204,12 @@
                   <br>
                   <ui>
                     <li>
-                      Designed an image processing algorithm to detect whether the boxes on the conveyor belt were too close together, while 
-                      preserving original functionality.
+                      Designed a 3D-printed tray, to organize standard fixture devices. This product eliminates time wasted in finding 
+                      the right fixture device.
                     </li>
                     <li>
-                      Made a GUI to showcase whether any sets of clumped boxes were diverted and if so how many.
+                      To eliminate time wasted in adapting standard fixture devices for complex parts, custom fixtures for various 
+                      molded parts were designed through analysis of CAD drawings and collaboration with QA inspectors
                     </li>
                   </ui>
                 </p>
@@ -211,7 +218,61 @@
                   <b><u>Technical Skills:</u></b>
                   <ui>
                     <li>
-                      Python (OpenCV), Ignition 8 Designer, Message Queuing Telemetry Transport (MQTT), Node-Red
+                      SolidWorks, Design for Manufacturability, GD&T, 3D Printing
+                    </li>
+                  </ui>
+               </p>
+                
+                <a class="btn" href="./Fixtures" target="_blank">Read More</a>
+                
+              </p>
+            </div>
+
+            <div class="project-right">
+              <img src="./media/img/Fixtures.gif">
+            </div>
+          </div>
+
+          <!-- PROJECT 3: Vision System for Clumped Box Case -->
+
+          <div style="display:inline-block;">
+            <div class="project-left">
+              <p class="project-font">Vision System for Clumped Box Case</p>
+              <p class="project-font2">
+                <p>
+                  <b><u>Problem:</u></b>
+                  <ui>
+                    <li>
+                      Goal is to improve a production line system to only divert individual boxes from the conveyor belt, as opposed to 
+                      a clumped set of boxes
+                    </li>
+                  </ui>
+                </p>
+
+                <p>
+                  <b><u>Solution:</u></b>
+                  <br>
+                  <ui>
+                    <li>
+                      Designed an image processing algorithm to detect and determine whether the boxes on the conveyor belt are too 
+                      close together. The boxes that are too close together, will be diverted into a holding cell for manual sorting.
+                    </li>
+                    <li>
+                      Integrated this algorithm into the pre-existing sorting algorithm to preserve functionality
+                    </li>
+                    <li>
+                      Designed a graphical user interface (GUI) to display the quantity of boxes diverted into the holding cell, as 
+                      well as whether or not manual intervention is necessary.
+                    </li>
+                  </ui>
+                </p>
+
+                <p>
+                  <b><u>Technical Skills:</u></b>
+                  <ui>
+                    <li>
+                      Image Processing (Python's OpenCV), Ignition 8 Designer, Message Queuing Telemetry Transport (MQTT), Node-Red, 
+                      Prototyping and Implementation
                     </li>
                   </ui>
                </p>
@@ -224,54 +285,6 @@
 
             <div class="project-right">
               <img src="./media/img/VisionSystemScreenCap.gif">
-            </div>
-          </div>
-
-          <!-- PROJECT 3: 3D Printed Fixtures -->
-
-          <div style="display:inline-block;">
-            <div class="project-left">
-              <p class="project-font">3D Printed Fixtures</p>
-              <p class="project-font2">
-                <p>
-                  <b><u>Problem:</u></b>
-                  <ui>
-                    <li>
-                      Goal is to improve the workflow of QA inspectors doing testing on the Coordinate Measuring Machine (CMM).
-                    </li>
-                    <li>
-                      The parts need to be fixed on the CMM table for testing. This can be a challenge if the part is irregular, which causes
-                      inefficiency and inaccuracies.
-                    </li>
-                  </ui>
-                </p>
-
-                <p>
-                  <b><u>Solution:</u></b>
-                  <br>
-                  <ui>
-                    <li>
-                      Designed custom 3D printed fixtures for various high volume parts, to allow for quicker setup and increase measurement accuracy.
-                    </li>
-                  </ui>
-                </p>
-
-                <p>
-                  <b><u>Technical Skills:</u></b>
-                  <ui>
-                    <li>
-                      SolidWorks, Design for Manufacturability, 3D Printing
-                    </li>
-                  </ui>
-               </p>
-                
-                <a class="btn" href="./Fixtures" target="_blank">Read More</a>
-                
-              </p>
-            </div>
-
-            <div class="project-right">
-              <img src="./media/img/Fixtures.gif">
             </div>
           </div>
 
