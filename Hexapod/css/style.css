@@ -720,7 +720,7 @@ header:before {
 }
 
 .image-grid {
-	--gap: 16px;
+	--gap: 2px;
 	--num-cols: 2;
 	--row-height: 500px;
 
@@ -736,11 +736,11 @@ header:before {
 .image-grid>img {
 	width: 80%;
 	height: 80%;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .image-grid-col-2 {
-	grid-column: span 2;
+	grid-column: span 1;
 }
 
 .image-grid-row-2 {
@@ -768,4 +768,40 @@ figcaption {
 	font-style: italic;
 	padding: 2px;
 	text-align: center;
+  }
+
+ul.circle {
+	list-style-type: circle;
+}
+  
+ul.square {
+list-style-type: square;
+}
+
+ol.upper-roman {
+list-style-type: upper-roman;
+}
+
+ol.lower-alpha {
+list-style-type: lower-alpha;
+}
+
+.row {
+	display: -ms-flexbox; /* IE 10 */
+	display: flex;
+	-ms-flex-wrap: wrap; /* IE 10 */
+	flex-wrap: wrap;
+	padding: 0 4px;
+  }
+  
+  /* Create two equal columns that sits next to each other */
+  .column {
+	-ms-flex: 50%; /* IE 10 */
+	flex: 50%;
+	padding: 0 4px;
+  }
+  
+  .column img {
+	margin-top: 8px;
+	vertical-align: middle;
   }

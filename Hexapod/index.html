@@ -200,13 +200,68 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">CAD Model</h2>
           <div class="container">
+            The CAD model should be designed in such a manner that modify a few variables will cause all the relevent parts to update. 
+            In other words, this should be a parametric and a top-down design. A top-down design is usually done at the assembly level, 
+            and parts are made such that they reference external dimensions. An advantage with this is that less rework is required when 
+            design changes occur. These changes could be things such as changing the length of various limbs or moving a servo. In 
+            bottom-up design, you would need to go through each part and rework them to ensure they fit the new changes. In top-down 
+            design changing one thing will allow the other parts to update to fit new changes. 
             
-            <img src="./media/Hexapod Front.png" style="width: 35%; height: 35%;" class="center">
-            <img src="./media/Hexapod Isometric.png" style="width: 35%; height: 35%;" class="center">
-            <img src="./media/Hexapod Leg.png" style="width: 35%; height: 35%;" class="center">
-            <img src="./media/Hexapod Side.png" style="width: 35%; height: 35%;" class="center">
-            <img src="./media/Hexapod Section View.png" style="width: 35%; height: 35%;" class="center">
+            <br><br>
 
+            Normally, this is done within an assembly by creating a layout sketch and having everything reference it. However, when 
+            working at the assembly level, it is important to not create circular references or mating conflicts, which can cause 
+            unexpected behaviours. As this is a personal project, I've opted to start with a multi-body part instead of an assembly so 
+            as to not have to deal with this issue. Upon completion, the various bodies can then be saved individually and then put into 
+            an assembly. The layout sketchs for the front and top views are shown below.
+            
+            <br>
+            <img src="./media/LayoutSketchFront.png" class="center">
+            <img src="./media/LayoutSketchTop.png" class="center">
+            <br>
+
+            Using these sketches, each part was created sequentially working from the center outwards. To ensure clarity and to avoid 
+            creating unnecessary references, the rollback feature of the feature tree was used to keep all actions (i.e. cuts, extrudes, 
+            fillets, etc.) together. A screenshot of the feature tree organized into folders by part is shown below:
+
+            <br>
+            <img src="./media/MultiBodyPartFeatureTree.png" style="width: 50%; height: 50%;" class="center">
+            <br>
+
+            Find below the various views of the final design of this iteration. 
+            
+            <br>
+            <!-- Photo Grid -->
+            <div class="row"> 
+              <div class="column">
+                <figure>
+                  <img src="./media/Hexapod Isometric.png" style="width:100%">
+                  <figcaption>Isometric View</figcaption>
+                </figure>
+                <figure>
+                  <img src="./media/Hexapod Side.png" style="width:100%">
+                  <figcaption>Side View</figcaption>
+                </figure>
+                <figure>
+                  <img src="./media/Hexapod Leg.png" style="width:100%">
+                  <figcaption>Leg Close-up</figcaption>
+                </figure>
+              </div>
+              <div class="column">
+                <figure>
+                  <img src="./media/Hexapod Top.png" style="width:100%">
+                  <figcaption>Top View</figcaption>
+                </figure>
+                <figure>
+                  <img src="./media/Hexapod Front.png" style="width:100%">
+                  <figcaption>Front View</figcaption>
+                </figure>
+                <figure>
+                  <img src="./media/Hexapod Exploded View.gif" style="width:100%">
+                  <figcaption>Exploded View</figcaption>
+                </figure>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -250,17 +305,41 @@
               <img src="./media/FullAssemblyAnimated.gif" class="center">
             </figure>
 
-            This solution has achieved most of the goals set out for this project. Some of the next steps are as follows:
+            This project is still a work in progress. As such, there are still a plenty of tasks that need to be done. These are 
+            as follows: (Note that this list does not necessarily needed to be followed sequentially)
             <ol type="1">
-              <li>Due to the use of a 4 bar linkage, the legs only have one degree of freedom. This means a lack of variety in the 
-                movement, with it only being able to move forwards and backwards. Other mechanisms can be implemented to potentially add 
-                more variety to the robot such as turning.</li>
-              <li>As there is only a limit degree of freedom, the robot doesn't really need 1 motor per leg. A single motor can be 
-                attached via a gear mechanism to control all the legs. This would also serve to eliminate the need for timing on 
-                legs.</li>
-              <li>Access to the battery and the Arduino is limited when the cover is installed. Additional design features such as a 
-                battery cover on the underside can be added to provide easy access without needing to always disassemble the robot.</li>
-              <li>Actually 3D print and test the mechanism with the electronics</li>
+              <li>Modify CAD model, to deal with the impact force on the legs</li>
+              <li>Simulations
+                <ol class="lower-alpha">
+                  <li>Research advantage of Gazebo vs Webots</li>
+                  <li>Learn about the chosen simulation software</li>
+                  <li>Export and set up a simulation model</li>
+                  <li>Use ROS to program the robot to do various task (i.e. walk, turn, climb stairs)</li>
+                  <li>Test and iterate</li>
+                </ol>
+              </li>
+              <li>Design electronics
+                <ol class="lower-alpha">
+                  <li>Determine all neccessary components</li>
+                  <li>Find specifications (i.e voltage, current, etc.)</li>
+                  <li>Learn a PCB creation software (i.e KiCad)</li>
+                  <li>Design a PCB</li>
+                </ol>
+              </li>
+              <li>Make and add CAD models of electronics to the Assembly</li>
+              <li>Get a PCB made (likely using a service such as PCBWay)</li>
+              <li>Build one leg 
+                <ol class="lower-alpha">
+                  <li>Purchase ball bearings, screws, heated inserts, and 4 servos</li>
+                  <li>3D print required parts for the leg</li>
+                  <li>Assemble and test the leg</li>
+                  <li>Iterate if needed</li>
+                 </ol>
+              </li>
+              <li>Buy all the required materials</li>
+              <li>Build a prototype</li>
+              <li>Add additional sensors</li>
+              <li>Start moving design into alternate software (likely Fusion360) in preparation for SolidWorks license expiration</li>
            </ol>
           </div>
         </div>
