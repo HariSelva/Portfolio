@@ -50,7 +50,10 @@
             <a class="nav-link js-scroll-trigger" href="#kinematics">Kinematics and Motion Study</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#budget">budget</a>
+            <a class="nav-link js-scroll-trigger" href="#budget">Budget</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#issues">Issues and Solutions</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#result">Results and Next Steps</a>
@@ -96,7 +99,7 @@
               <li>Needs to inherently stable (i.e. it should be able to balance without additional hardware or software)</li>
               <li>Should have at least 3 degrees of freedom to allow for versatility in future projects</li>
               <li>Should be multi-terrain</li>
-              <li>Stay within a budget of $400</li>
+              <li>Stay within a budget of $600 (not including 3D printing)</li>
               <li>Needs to have a platform/area on which additional hardware (i.e. LIDAR, Nerf Turret, Robotic Arm, etc.) can be mounted</li>
               <li>System should be able to support its own weight as well as have capacity for additional hardware</li>
               <li>Parts should be either 3D printed or off the shelf</li>
@@ -233,7 +236,7 @@
             <br>
             <!-- Photo Grid -->
             <div class="row"> 
-              <div class="column">
+              <div class="column_2">
                 <figure>
                   <img src="./media/Hexapod Isometric.png" style="width:100%">
                   <figcaption>Isometric View</figcaption>
@@ -247,7 +250,7 @@
                   <figcaption>Leg Close-up</figcaption>
                 </figure>
               </div>
-              <div class="column">
+              <div class="column_2">
                 <figure>
                   <img src="./media/Hexapod Top.png" style="width:100%">
                   <figcaption>Top View</figcaption>
@@ -272,9 +275,26 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">Kinematics and Motion Study</h2>
           <div class="container">
-            
-
-            <img src="./media/Walking-Isometric.gif" style="width: 35%; height: 35%;" class="center">
+            <div class="row"> 
+              <div class="column_3">
+                <figure>
+                  <img src="./media/Walking-Isometric.gif" style="width: 100%;">
+                  <figcaption>Isometric View</figcaption>
+                </figure>
+              </div>
+              <div class="column_3">
+                <figure>
+                  <img src="./media/Walking-Side.gif" style="width: 100%;">
+                  <figcaption>Side View</figcaption>
+                </figure>
+              </div>
+              <div class="column_3">
+                <figure>
+                  <img src="./media/Walking-Top.gif" style="width: 100%;">
+                  <figcaption>Top View</figcaption>
+                </figure>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -286,13 +306,30 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">Budget</h2>
           <div class="container">
+            As this is a personal project, managing the budget is important to ensure, that the cost isn't going out of control. This 
+            project will have additional expenses from the fact that  
+            
+            <br>
+            <img src="./media/BudgetOverview.png" style="width: 100%;" class="center">
+            <br>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Possible Issues and Solutions/Prevention Methods -->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="issues">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Possible Issues and Solutions</h2>
+          <div class="container">
             
 
           </div>
         </div>
       </section>
 
-      <!-- SECTION 5: Results and Next Steps -->
+      <!-- SECTION 7: Results and Next Steps -->
 
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="result">
         <div class="w-100">
@@ -321,7 +358,7 @@
               <li>Design electronics
                 <ol class="lower-alpha">
                   <li>Determine all neccessary components</li>
-                  <li>Find specifications (i.e voltage, current, etc.)</li>
+                  <li>Find specifications (i.e voltage, current, footprint etc.)</li>
                   <li>Learn a PCB creation software (i.e KiCad)</li>
                   <li>Design a PCB</li>
                 </ol>
@@ -338,6 +375,7 @@
               </li>
               <li>Buy all the required materials</li>
               <li>Build a prototype</li>
+              <li>Write a program that take a command (i.e. forwards, left, turn, etc.) and converts it into a sequence of leg movements</li>
               <li>Add additional sensors</li>
               <li>Start moving design into alternate software (likely Fusion360) in preparation for SolidWorks license expiration</li>
            </ol>

@@ -775,15 +775,15 @@ ul.circle {
 }
   
 ul.square {
-list-style-type: square;
+	list-style-type: square;
 }
 
 ol.upper-roman {
-list-style-type: upper-roman;
+	list-style-type: upper-roman;
 }
 
 ol.lower-alpha {
-list-style-type: lower-alpha;
+	list-style-type: lower-alpha;
 }
 
 .row {
@@ -792,16 +792,28 @@ list-style-type: lower-alpha;
 	-ms-flex-wrap: wrap; /* IE 10 */
 	flex-wrap: wrap;
 	padding: 0 4px;
-  }
+}
   
-  /* Create two equal columns that sits next to each other */
-  .column {
+/* Create two equal columns that sits next to each other */
+.column_2 {
 	-ms-flex: 50%; /* IE 10 */
 	flex: 50%;
 	padding: 0 4px;
-  }
+}
   
-  .column img {
+.column_2 img {
 	margin-top: 8px;
 	vertical-align: middle;
-  }
+}
+
+/* Create three equal columns that sits next to each other */
+.column_3 {
+	-ms-flex: 33%; /* IE 10 */
+	flex: 33%;
+	padding: 0 4px;
+}
+  
+.column_3 img {
+	margin-top: 8px;
+	vertical-align: middle;
+}
