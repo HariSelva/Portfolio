@@ -817,3 +817,12 @@ ol.lower-alpha {
 	margin-top: 8px;
 	vertical-align: middle;
 }
+
+.imageContainer > img {
+	transition:transform 0.25s ease;
+  }
+
+.imageContainer > img:hover {
+	-webkit-transform:scale(1.5); /* or some other value */
+    transform:scale(1.5);
+  }

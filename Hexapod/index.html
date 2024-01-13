@@ -79,7 +79,7 @@
               me to want to build my own mobile robot. Learning more about robotics, ROS, and autonomous navigation is one of the 
               reasons behind this project. In order to do this, I would need a vehicular platform, through which this learning can be 
               done. As well, taking into account, my other interests such as nerf blasters, it would also be interesting to have a 
-              mobile nerf turret. As such, this project would need to be a multi-terrain robotic platfrom, on which future projects, 
+              mobile nerf turret. As such, this project would need to be a multi-terrain robotic platform, on which future projects, 
               whether they be a nerf turret, or an autonomous mobile robot can be built upon.
             </p>
           </div>
@@ -136,7 +136,7 @@
            In terms of stability/balance, both the holonomic vehicle and the tank are the best as their configuration means they are 
            unlikely to tip over or require extra hardware/software to prevent them from tipping over. The hexapod come in third, due 
            to its tripod gait which grants it increased stability, but do the nature of legged robots, changes in terrain height can 
-           cause stability issues. In last is the aerial drone, as some sort of flight controller is neccessary to ensure, it can 
+           cause stability issues. In last is the aerial drone, as some sort of flight controller is necessary to ensure, it can 
            stably fly/hover in the air.
 
            <br><br>
@@ -177,7 +177,7 @@
 
             Regarding the battery, it should be as compact as possible, and be able to provide at least 18 amps of current. Most servos can pull 
             up to an amp or more when under loaded conditions, leading to this condition. I ended up choosing the 
-            <a href="https://www.amazon.com/gp/product/B071D4J7VV/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1" target="_blank"><strong>Zeee 2S Lipo Battery</strong></a> 
+            <a href="https://www.amazon.com/gp/product/B071D4J7VV/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1" target="_blank"><strong>Zeee 2S LiPo Battery</strong></a> 
             with 7.4V, 80C, and 7200mAh. Based on this rating, it can supply up to 576 amps, which is more than plenty. Unfortunately, the 
             voltage is a little too high for the servos (max of 6.8v) which preferably would be run at 5-6v to ensure high torque, 
             without damaging the servos.
@@ -203,7 +203,7 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">CAD Model</h2>
           <div class="container">
-            The CAD model should be designed in such a manner that modify a few variables will cause all the relevent parts to update. 
+            The CAD model should be designed in such a manner that modify a few variables will cause all the relevant parts to update. 
             In other words, this should be a parametric and a top-down design. A top-down design is usually done at the assembly level, 
             and parts are made such that they reference external dimensions. An advantage with this is that less rework is required when 
             design changes occur. These changes could be things such as changing the length of various limbs or moving a servo. In 
@@ -216,7 +216,7 @@
             working at the assembly level, it is important to not create circular references or mating conflicts, which can cause 
             unexpected behaviours. As this is a personal project, I've opted to start with a multi-body part instead of an assembly so 
             as to not have to deal with this issue. Upon completion, the various bodies can then be saved individually and then put into 
-            an assembly. The layout sketchs for the front and top views are shown below.
+            an assembly. The layout sketches for the front and top views are shown below.
             
             <br>
             <img src="./media/LayoutSketchFront.png" class="center">
@@ -306,12 +306,39 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">Budget</h2>
           <div class="container">
-            As this is a personal project, managing the budget is important to ensure, that the cost isn't going out of control. This 
-            project will have additional expenses from the fact that  
+            As this is a personal project, managing the budget is important to ensure that the cost isn't going out of control. This 
+            project will have additional expenses from the fact that it will be done at home. This means stable items such as 
+            screws or wires will need to be bought in bulk even if I don't need a lot. As well, I'll also need to buy equipment (i.e. 
+            soldering iron, or a LiPo charger). The budget was originally set at $400, but has been increased to $600 as I severely 
+            underestimated the cost of the motors, which costs more than $200. The image below breaks down the costs of the various 
+            items that need to be bought for this project. This breakdown only features, the parts needed to build the hexapod, without 
+            any of the equipment. I am currently looking for ways to use equipment for free such as the library's equipment lendery. As 
+            well note that the prices do not include shipping. The total cost comes out to $440.48.
             
+            <br><br>
+            <a href="./media/BudgetOffTheShelf.png" target="_blank">
+              <figure>
+                <img src="./media/BudgetOffTheShelf.png" style="width: 100%;" class="center">
+                <figcaption>
+                  Overview of what items need to be bought. Please click on the image to open a larger version in a new tab.
+                </figcaption>
+              </figure>
+            </a> 
+
+            The estimated price to 3D print each part has also been calculated. This has been estimated using the assumption that I will
+            be printing it myself, without the use of a third party printing service. As such, I've based the estimate on the price for 
+            1kg of <a href="https://www.amazon.ca/AmazonBasics-Printer-Filament-1-75mm-Spool/dp/B08896J53G" target="_blank"><strong>Amazon Basics SILK PLA 3D Printer Filament</strong></a>. 
+            The price breakdown is shown in the image below. Note that for small parts, a 50% infill was used if it doesn't experience 
+            any stress, while those that do had 100% infill. For larger parts, a variety of infill was used, to maximize strength while 
+            keeping print times to a minimum. The total cost comes out to be $87.49
+
+            <br><br>
+            <img src="./media/Budget3DPrintedParts.png" style="width: 100%;" class="center">
             <br>
-            <img src="./media/BudgetOverview.png" style="width: 100%;" class="center">
-            <br>
+
+            A bill of materials (BoM) has also been created, which organizes the parts by level based on the assembly and sub-assemblies. This 
+            bill of materials, also calculates the total cost based on unit prices, which comes out to be $400.08. This is a more 
+            accurate representation of what the Hexapod costs. The full BoM can be found <a href="./media/Bill of Materials.pdf" target="_blank"><strong>here</strong></a>. 
 
           </div>
         </div>
@@ -323,7 +350,51 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">Possible Issues and Solutions</h2>
           <div class="container">
-            
+            As with any project, it is expect that I will run into a variety of issues. As such, I have made a list of some possible 
+            issue that I may face and the possible solution(s) to these issues.
+            <ol type="1">
+              <li>Twitchy Servos
+                <ul>
+                  <li>
+                    This is usually caused by insufficient power. If all the servos are twitchy it means, I need to provide more power 
+                    to the servos. This can be done through separating the servos into separate circuits with a common ground to ensure 
+                    sufficient power is being delivered. 
+                  </li>
+                  <li>
+                    Adding a high value capacitor in parallel with the servo, to ensure there is always a reservoir of power for the servo.
+                  </li>
+                  <li>
+                    Check to see if any portion of my code is causing interrupts to be disabled. If it is, see if I can change the code to 
+                    the disabling of interupts. If this is not possible, a separate servo driver can be bought and used.
+                  </li>
+                  <li>
+                    If after all of this, a servo is still twitchy it might just be that it is defective. In this case, additional 
+                    friction can be added to the specific joint by replacing the bearings with a bushing to forcibly stop the twitching 
+                    from happen. Later on the servo can be replaced.
+                  </li>
+                </ul>
+              </li>
+              <li>Object Collision
+                <ul>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </li>
+              <li>High Impact Force on Legs
+                <ul>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </li>
+              <li>Defective / Fried Electronics
+                <ul>
+                  <li>Ensure I have spares on hand so that I can easily and quickly replace parts.</li>
+                  <li>
+                    Double check circuits before powering them up, to ensure there are no short circuits or errors that might cause 
+                    harm to the electronics.
+                  </li>
+                </ul>
+              </li>
 
           </div>
         </div>
@@ -334,16 +405,16 @@
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="result">
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">Results and Next Steps</h2>
-          <div class="container">
-            Through the use of SolidWorks, an assembly model of the final design concept was created and a motion study was created to 
-            visualize the movement of the legs. This is shown in the figure below.
-            
+          <div class="container">           
             <figure>
-              <img src="./media/FullAssemblyAnimated.gif" class="center">
+              <img src="./media/IsometricRotation.gif" class="center">
             </figure>
+            <br>
 
-            This project is still a work in progress. As such, there are still a plenty of tasks that need to be done. These are 
-            as follows: (Note that this list does not necessarily needed to be followed sequentially)
+            The figure above showcases the final CAD model. So far, quite a lot has been completed. The 3D CAD design has been completed, 
+            a working kinematics model had been derived, and a motion study has been done to verify the kinematics and to visualize 
+            the hexapod. However, this project is still a work in progress. As such, there are still a plenty of tasks that need to be 
+            done. These are as follows: (Note that this list does not necessarily needed to be followed sequentially)
             <ol type="1">
               <li>Modify CAD model, to deal with the impact force on the legs</li>
               <li>Simulations
@@ -357,7 +428,7 @@
               </li>
               <li>Design electronics
                 <ol class="lower-alpha">
-                  <li>Determine all neccessary components</li>
+                  <li>Determine all necessary components</li>
                   <li>Find specifications (i.e voltage, current, footprint etc.)</li>
                   <li>Learn a PCB creation software (i.e KiCad)</li>
                   <li>Design a PCB</li>
