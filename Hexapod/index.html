@@ -46,9 +46,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#CAD">CAD Model</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#kinematics">Kinematics and Motion Study</a>
-          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#calculations">Calculations</a>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#budget">Budget</a>
           </li>
@@ -76,9 +76,9 @@
               <img src="./media/Hexapod Isometric.png" style="width: 55%; height: 55%;" class="center">
 
               One of the courses that I most enjoyed during my time at UWaterloo was MTE 544 - Autonomous Mobile Robots. It inspired 
-              me to want to build my own mobile robot. Learning more about robotics, ROS, and autonomous navigation is one of the 
-              reasons behind this project. In order to do this, I would need a vehicular platform, through which this learning can be 
-              done. As well, taking into account, my other interests such as nerf blasters, it would also be interesting to have a 
+              me to want to build my own mobile robot. Learning more about robotics, ROS, and autonomous navigation is one of the main 
+              reasons behind this project. In order to do this, I would need a vehicular platform through which this learning can  
+              be done. As well, taking into account my other interests such as nerf blasters, it would also be interesting to have a 
               mobile nerf turret. As such, this project would need to be a multi-terrain robotic platform, on which future projects, 
               whether they be a nerf turret, or an autonomous mobile robot can be built upon.
             </p>
@@ -95,15 +95,15 @@
           <h2 class="mb-4 timeline-left-heading">Design Parameters</h2>
           <div class="container">
             There were a few design parameters that were set for this project. In no particular order, these are as follows:
-            <ul>
-              <li>Needs to inherently stable (i.e. it should be able to balance without additional hardware or software)</li>
+            <ol>
+              <li>Needs to be inherently stable (i.e. it should be able to balance without additional hardware or software)</li>
               <li>Should have at least 3 degrees of freedom to allow for versatility in future projects</li>
               <li>Should be multi-terrain</li>
-              <li>Stay within a budget of $600 (not including 3D printing)</li>
+              <li>Stay within a budget of <s>$400</s> $600 (not including 3D printing)</li>
               <li>Needs to have a platform/area on which additional hardware (i.e. LIDAR, Nerf Turret, Robotic Arm, etc.) can be mounted</li>
               <li>System should be able to support its own weight as well as have capacity for additional hardware</li>
               <li>Parts should be either 3D printed or off the shelf</li>
-           </ul>
+           </ol>
 
            The first four parameters defined the type of robot for this project, while the rest ensured it would be successful. Based 
            on these parameters, a decision matrix was created to decide what type of robot would best fit this project. This is shown 
@@ -113,17 +113,17 @@
            <img src="./media/Decision Matrix.png" style="width: 75%; height: 75%;" class="center">
            <br>
 
-           In terms of cost, the deciding factor was the number of motors required for each type of robot. The various motors required 
-           range from 12-20 dollars each, which I've considered to be about the same price range. As such the more motors, the more costly. The tank 
-           costs the least with only two motors. In second is the holonomic vehicle with 3 motors in a kiwi drive configuration. Then 
-           the aerial drone with 4 motors in a quadcopter configuration and the hexapod in last due to each leg requiring 3 motors for 
-           a total of 18 motors minimum.
+           In terms of cost, the deciding factor was the number of motors required for each type of robot. The price, of the various 
+           motors required, ranges from 12-20 dollars each. For simplicity, I've considered this to be about the same price range. As 
+           such the more motors, the more costly. The tank costs the least with only two motors. In second is the holonomic vehicle 
+           with 3 motors in a kiwi drive configuration. Then the aerial drone with 4 motors in a quadcopter configuration and the 
+           hexapod in last due to each leg requiring 3 motors for a total of 18 motors minimum.
 
            <br><br>
 
            Concerning the robot being multi-terrain, the aerial drone is the best as it can just fly over any terrain, followed by the 
-           legged robot, due to its great maneuverability. Then comes the tank due to the tank treads allow for it to traverse a wider
-           variety of terrain. Lastly is the holonomic robot as it would only be able function on smooth flat surfaces.
+           legged robot, due to its great maneuverability. Then comes the tank due to the tank treads allowing it to traverse a wider
+           variety of terrain. Lastly, is the holonomic robot as it would only be able function on smooth flat surfaces.
 
            <br><br>
 
@@ -134,17 +134,18 @@
            <br><br>
 
            In terms of stability/balance, both the holonomic vehicle and the tank are the best as their configuration means they are 
-           unlikely to tip over or require extra hardware/software to prevent them from tipping over. The hexapod come in third, due 
-           to its tripod gait which grants it increased stability, but do the nature of legged robots, changes in terrain height can 
+           unlikely to tip over or require extra hardware/software to prevent them from tipping over. The hexapod comes in third, due 
+           to its tripod gait which grants it increased stability, but due to the nature of legged robots, changes in terrain height can 
            cause stability issues. In last is the aerial drone, as some sort of flight controller is necessary to ensure, it can 
            stably fly/hover in the air.
 
            <br><br>
 
            After calculating the scores, it was seen that the best option was the aerial drone. However, in the end the next best choice 
-           was taken, due to the lack of any large open areas required for testing or using an aerial drone. As well, I currently lack 
-           the skills to pilot a drone, and did not feel it would be appropriate to learn to do so with my own custom drone. This 
-           option has been left in the decision matrix for completeness.
+           was taken, due to the fact that compared to the other options, the aerial drone is not inherently stable. This was a deal 
+           breaking requirement and as the drone did not meet it, the second option was chosen. As well, I don't have access to any 
+           large open areas required for testing or using an aerial drone. Furthermore, I currently lack the skills to pilot a drone, 
+           and did not feel it would be appropriate to learn to do so with my own custom drone. 
 
           </div>
         </div>
@@ -166,21 +167,23 @@
             <br><br>
             <img src="./media/SourcedParts.png" style="width: 75%; height: 75%;" class="center">
 
-            In terms of servos, this hexapod will have 3 per leg, for a total of 18. These servos will need to have enough torque to support 
-            the robot as well as rotate enough to allow for a wide range of movement. The problem with choosing a servo in the beginning is 
-            that you can't know the amount of torque required without knowing the weight and configuration of the hexapod. As such a relatively 
-            high torque servo, the <a href="https://www.aliexpress.us/item/32719897757.html?spm=a2g0o.order_list.order_list_main.10.7c471802OBIMB9&gatewayAdapt=4itemAdapt" target="_blank"><strong>DS3230</strong></a>, 
-            was chosen. This supposedly has 30 kg&#183;cm of torque (at 5v), which should be more than sufficient. Math will be done when a finalized, 
-            or semi-finalized design has been completed to ensure that these servos are adequate.
+            In terms of servos, this hexapod will have 3 per leg, for a total of 18. These servos will need to have enough torque to 
+            support the robot as well as rotate enough to allow for a wide range of movement. The problem with choosing a servo in the 
+            beginning is that you can't know the amount of torque required without knowing the weight and configuration of the hexapod. 
+            As such a relatively high torque servo, the <a href="https://www.aliexpress.us/item/32719897757.html?spm=a2g0o.order_list.order_list_main.10.7c471802OBIMB9&gatewayAdapt=4itemAdapt" target="_blank"><strong>DS3230</strong></a>, 
+            was chosen. This supposedly has 30 kg&#183;cm of torque (at 5v), which should be more than sufficient. Math will be done 
+            when a finalized, or semi-finalized design has been completed to ensure that these servos are adequate.
 
             <br><br>
 
-            Regarding the battery, it should be as compact as possible, and be able to provide at least 18 amps of current. Most servos can pull 
-            up to an amp or more when under loaded conditions, leading to this condition. I ended up choosing the 
+            Regarding the battery, it should be as compact as possible, and be able to provide at least 18 amps of current. Most servos 
+            can pull up to an amp or more when under loaded conditions, leading to this condition. I ended up choosing the 
             <a href="https://www.amazon.com/gp/product/B071D4J7VV/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1" target="_blank"><strong>Zeee 2S LiPo Battery</strong></a> 
-            with 7.4V, 80C, and 7200mAh. Based on this rating, it can supply up to 576 amps, which is more than plenty. Unfortunately, the 
-            voltage is a little too high for the servos (max of 6.8v) which preferably would be run at 5-6v to ensure high torque, 
-            without damaging the servos.
+            with 7.4V, 80C, and 7200mAh specifications. Based on this rating, it can supply up to 576 amps, which is more than plenty. 
+            Unfortunately, the voltage is a little too high for the servos (max 6.8v) which preferably, would be run at 5-6v to ensure 
+            high torque, without damaging the servos. Other batteries that I've found which have the correct voltage, don't specify the 
+            maximum current output. As such, I've decided to go with this battery for now, while continuously being on the lookout for 
+            better alternatives. If a better battery is found, the CAD model can easily be updated, by changing the relevant variables.
 
             <br><br>
 
@@ -203,25 +206,53 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">CAD Model</h2>
           <div class="container">
-            The CAD model should be designed in such a manner that modify a few variables will cause all the relevant parts to update. 
+            The CAD model should be designed in such a manner that modifying a few variables will cause all the relevant parts to update. 
             In other words, this should be a parametric and a top-down design. A top-down design is usually done at the assembly level, 
             and parts are made such that they reference external dimensions. An advantage with this is that less rework is required when 
             design changes occur. These changes could be things such as changing the length of various limbs or moving a servo. In 
             bottom-up design, you would need to go through each part and rework them to ensure they fit the new changes. In top-down 
-            design changing one thing will allow the other parts to update to fit new changes. 
+            design, changing one thing will cause all the parts to update to fit the new changes.
             
             <br><br>
 
             Normally, this is done within an assembly by creating a layout sketch and having everything reference it. However, when 
             working at the assembly level, it is important to not create circular references or mating conflicts, which can cause 
-            unexpected behaviours. As this is a personal project, I've opted to start with a multi-body part instead of an assembly so 
+            unexpected behaviours. As this is a personal project, I've opted to start with a multi-body part instead of an assembly, so 
             as to not have to deal with this issue. Upon completion, the various bodies can then be saved individually and then put into 
-            an assembly. The layout sketches for the front and top views are shown below.
+            an assembly. 
+
+            <br><br>
             
-            <br>
-            <img src="./media/LayoutSketchFront.png" class="center">
-            <img src="./media/LayoutSketchTop.png" class="center">
-            <br>
+            Some design decisions during the making of the CAD model include the leg location, body shape, and the leg anatomy. The 
+            body shape and leg locations are related. There are three routes that can be taken with a hexapod; legs that are positioned 
+            in a linear pattern, circular pattern, or somewhere in between. I've opted to go with the circular pattern as it should make 
+            programming the walking slightly easier than the linear pattern, especially in terms of turning. The body shape needed to be 
+            something that allowed for a circular pattern of legs. As such an octagonal shape was chosen. This allowed for a circular 
+            pattern and also provided some space between the left and right sides in which sensors may be located. The legs were based 
+            off of the anatomy of a real spider (see image below). It was simplified to use 3 joints/motors per leg to 
+            reduce complexity and cost. The hexapod legs stop at the tibia, which removes 2 joints. The joint (in the top view) between the patella and 
+            the tibia was also removed as this movement is covered by the joint at the coxa/trochanter. With these design choices made, 
+            the layout sketches were then created. These are shown below.
+
+            <!-- Photo Grid -->
+            <div class="row"> 
+              <div class="column_2">
+                <figure>
+                  <img src="./media/SpiderLegAnatomy.jpg" style="width:100%">
+                  <figcaption>
+                    Side view and top view of a spider's leg showing range of movement. Retrieved from 
+                    <a href="https://johnmuirlaws.com/spider-anatomy-artists/" target="_blank"><strong>John Muir Laws</strong></a>. 
+                  </figcaption>
+                </figure>
+              </div>
+              <div class="column_2">
+                <figure>
+                  <img src="./media/LayoutSketchFront.png" style="width:100%">
+                  <img src="./media/LayoutSketchTop.png" style="width:100%">
+                  <figcaption>Side and top views of the layout sketches</figcaption>
+                </figure>
+              </div>
+            </div>
 
             Using these sketches, each part was created sequentially working from the center outwards. To ensure clarity and to avoid 
             creating unnecessary references, the rollback feature of the feature tree was used to keep all actions (i.e. cuts, extrudes, 
@@ -231,12 +262,18 @@
             <img src="./media/MultiBodyPartFeatureTree.png" style="width: 50%; height: 50%;" class="center">
             <br>
 
-            Find below the various views of the final design of this iteration. 
+            Once the multibody part was finished, each body was exported as a separate part and then put together into an assembly. 
+            Subassemblies were used where appropriate, along with circular patterns. Find below the various views of the final design 
+            of this iteration. 
             
             <br>
             <!-- Photo Grid -->
             <div class="row"> 
               <div class="column_2">
+                <figure>
+                  <img src="./media/Hexapod Multi-body Part.png" style="width:100%">
+                  <figcaption>Multi-body Part</figcaption>
+                </figure>
                 <figure>
                   <img src="./media/Hexapod Isometric.png" style="width:100%">
                   <figcaption>Isometric View</figcaption>
@@ -269,11 +306,12 @@
         </div>
       </section>
 
-      <!-- SECTION 4: Kinematics and Motion Study -->
-      
-      <section class="section3 p-3 p-lg-5 d-flex timetime" id="kinematics">
+      <!-- SECTION 4: Calculations -->
+<!--       
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="calculations">
         <div class="w-100">
-          <h2 class="mb-4 timeline-left-heading">Kinematics and Motion Study</h2>
+          <h2 class="mb-4 timeline-left-heading">Calculations</h2>
+
           <div class="container">
             <div class="row"> 
               <div class="column_3">
@@ -298,7 +336,7 @@
 
           </div>
         </div>
-      </section>
+      </section> -->
 
       <!-- SECTION 5: Budget -->
       
@@ -313,7 +351,7 @@
             underestimated the cost of the motors, which costs more than $200. The image below breaks down the costs of the various 
             items that need to be bought for this project. This breakdown only features, the parts needed to build the hexapod, without 
             any of the equipment. I am currently looking for ways to use equipment for free such as the library's equipment lendery. As 
-            well note that the prices do not include shipping. The total cost comes out to $440.48.
+            well, note that the prices do not include shipping or tax. The total cost comes out to be $440.48.
             
             <br><br>
             <a href="./media/BudgetOffTheShelf.png" target="_blank">
@@ -364,26 +402,32 @@
                     Adding a high value capacitor in parallel with the servo, to ensure there is always a reservoir of power for the servo.
                   </li>
                   <li>
-                    Check to see if any portion of my code is causing interrupts to be disabled. If it is, see if I can change the code to 
-                    the disabling of interupts. If this is not possible, a separate servo driver can be bought and used.
+                    Check to see if any portion of my code is causing interrupts to be disabled. If yes, see if I can change the code to 
+                    avoid the disabling of interrupts. If this is not possible, a separate servo driver can be bought and used.
                   </li>
                   <li>
-                    If after all of this, a servo is still twitchy it might just be that it is defective. In this case, additional 
-                    friction can be added to the specific joint by replacing the bearings with a bushing to forcibly stop the twitching 
-                    from happen. Later on the servo can be replaced.
+                    If after all of this, a servo is still twitchy it might just be that it is defective or that it is having trouble 
+                    holding its exact position under load. In this case, additional friction can be added to the specific joint by 
+                    replacing the bearings with a bushing to forcibly stop the twitching from happen. Later on, the servo can be replaced, 
+                    if appropriate.
                   </li>
                 </ul>
               </li>
-              <li>Object Collision
+              <li>Leg Collision
                 <ul>
-                  <li></li>
-                  <li></li>
+                  <li>
+                    In certain positions, the legs can collide with other legs. This can be solved by choosing an adequate step length, 
+                    such that the legs do not move far enough to collide with each other.
+                  </li>
                 </ul>
               </li>
-              <li>High Impact Force on Legs
+              <li>Overheating Electronics
                 <ul>
-                  <li></li>
-                  <li></li>
+                  <li>
+                    Most of the electronics should not overheat unless they are defective. The part that might experience overheating is 
+                    the voltage regulator. While it can dissipate some of that heat over short periods of time, long durations may cause 
+                    problems. If this turns out to be an issue, a fan can be installed to provide more airflow and heat dissipation.
+                  </li>
                 </ul>
               </li>
               <li>Defective / Fried Electronics
@@ -392,6 +436,28 @@
                   <li>
                     Double check circuits before powering them up, to ensure there are no short circuits or errors that might cause 
                     harm to the electronics.
+                  </li>
+                  <li>Potentially use a Electronic Fast-Acting Fuse to ensure protection against any short circuits.</li>
+                  <li>
+                    Install a current sensor to monitor the current and allow for shutting down of electronics if the current draw becomes 
+                    too high.
+                  </li>
+                </ul>
+              </li>
+              <li>High Impact Force on Legs
+                <ul>
+                  <li>
+                    While walking, the impact force of the legs hitting the ground can cause damage to the servo's internal gears. 
+                    Overtime this can cause the servo to stop working. This can be prevented using a softer material at the end of the 
+                    legs (i.e have rubber leg tips).
+                  </li>
+                  <li>
+                    Alternatively, a shock absorber (i.e. springs, dampers, etc.) can be installed in the legs to absorb some of
+                    the force.
+                  </li>
+                  <li>
+                    A software solution would be to make the legs slow down as it comes closer to the ground so that the impact force  
+                    is minimized as much as possible.
                   </li>
                 </ul>
               </li>
@@ -406,20 +472,96 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">Results and Next Steps</h2>
           <div class="container">           
-            <figure>
-              <img src="./media/IsometricRotation.gif" class="center">
-            </figure>
-            <br>
+            <div class="project-right">
+              <img src="./media/IsometricRotation.gif" style="width: 85%">
+            </div>
 
-            The figure above showcases the final CAD model. So far, quite a lot has been completed. The 3D CAD design has been completed, 
+            The figure on the right showcases the final CAD model for this iteration. The success of the project can be assessed by 
+            verifying if it is meeting (or on track to meet) the design requirements set for this project. A summary of the 
+            verification can be found in the table below. For more details on the <a class="js-scroll-trigger" href="#budget">budget</a> 
+            requirement, visit the corresponding section. The requirement on the robot being able to handle its own weight is still to be determined. Calculations will 
+            be done in the near future, to ensure that the servo motors do in fact have enough torque to support its own weight. If it 
+            is found that these servos are inadequate, one of two actions will be taken. The first being to reduce the weight of the 
+            robot in an attempt to meet the requirement. The second being finding a servo that provides a higher torque.
+
+            <br>
+            <table>
+              <caption>Verification of design requirements:</caption>
+              <colgroup>
+                <col span="1" style="width: 25%">
+              </colgroup>
+              <tr>
+                <th>Requirement</th>
+                <th>Pass/Fail</th>
+                <th>Justification</th>
+              </tr>
+              <tr>
+                <td>1. Inherently Stable</td>
+                <td>Pass</td>
+                <td>
+                  A hexapod can use its tripod gait to walk in stable manner. As well, due to the six legs, the hexapod is very stable 
+                  when stationary.
+                </td>
+              </tr>
+              <tr>
+                <td>2. At least 3 Degrees of Freedom</td>
+                <td>Pass</td>
+                <td>
+                  This robot will have six degrees of freedom, due to its six legs allowing for the platform to move in all directions.
+                </td>
+              </tr>
+              <tr>
+                <td>3. Multi-Terrain</td>
+                <td>Pass</td>
+                <td>
+                  A hexapod can take advantage of its legs to maneuver various terrains.
+                </td>
+              </tr>
+              <tr>
+                <td>4. Within $600</td>
+                <td>Conditional Pass</td>
+                <td>
+                  The per unit price comes out to be just over $400, which met the original requirement of $400. However, when looking 
+                  at the total amount being used to buy parts, the cost was closer to $500. This was mainly due to severely 
+                  underestimating the cost of servos. As such the budget was increased.
+                </td>
+              </tr>
+              <tr>
+                <td>5. Platform for Future Hardware</td>
+                <td>Pass</td>
+                <td>
+                  The truncated cone design for the main body of the hexapod provide plenty of space for a LiDAR or Nerf Turret to be 
+                  mounted.
+                </td>
+              </tr>
+              <tr>
+                <td>6. Support its own Weight</td>
+                <td>To be Determined</td>
+                <td>
+                  To be Determined
+                </td>
+              </tr>
+              <tr>
+                <td>7. 3D Printed or Off-the-Shelf</td>
+                <td>Pass</td>
+                <td>
+                  As of right now, all parts are either Off-the-Shelf or 3D printed.
+                </td>
+              </tr>
+            </table>
+            
+            <br><br>
+            
+            So far, quite a lot has been completed. The 3D CAD design has been completed, 
             a working kinematics model had been derived, and a motion study has been done to verify the kinematics and to visualize 
             the hexapod. However, this project is still a work in progress. As such, there are still a plenty of tasks that need to be 
             done. These are as follows: (Note that this list does not necessarily needed to be followed sequentially)
             <ol type="1">
+              <li>Complete calculations to verify servo specifications meet requirements</li>
               <li>Modify CAD model, to deal with the impact force on the legs</li>
               <li>Simulations
-                <ol class="lower-alpha">
-                  <li>Research advantage of Gazebo vs Webots</li>
+                <ol class="lower-alpha"> 
+                  <li>Research pros/cons of Gazebo vs Webots</li>
                   <li>Learn about the chosen simulation software</li>
                   <li>Export and set up a simulation model</li>
                   <li>Use ROS to program the robot to do various task (i.e. walk, turn, climb stairs)</li>
@@ -447,8 +589,9 @@
               <li>Buy all the required materials</li>
               <li>Build a prototype</li>
               <li>Write a program that take a command (i.e. forwards, left, turn, etc.) and converts it into a sequence of leg movements</li>
-              <li>Add additional sensors</li>
+              <li>Add additional sensors (i.e. Ultrasonic sensor, limit switches, etc.)</li>
               <li>Start moving design into alternate software (likely Fusion360) in preparation for SolidWorks license expiration</li>
+              <li>Find a better battery</li>
            </ol>
           </div>
         </div>

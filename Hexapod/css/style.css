@@ -826,3 +826,38 @@ ol.lower-alpha {
 	-webkit-transform:scale(1.5); /* or some other value */
     transform:scale(1.5);
   }
+
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	padding: 8px;
+}
+
+th {
+	background-color: #5B9BD5;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+td {
+	text-align: left;
+}
+
+tr:nth-child(odd) {
+	background-color: #BDD7EE;
+}
+
+tr:nth-child(even) {
+	background-color: #DDEBF7;
+}
+
+caption {
+	caption-side: top;
+	font-style: italic;
+	text-align: center;
+}
