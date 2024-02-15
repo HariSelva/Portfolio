@@ -44,6 +44,10 @@ h3 {
 	font-size: 2rem;
 }
 
+p {
+	text-align: center;
+}
+
 p.lead {
 	font-size: 1rem;
 	font-weight: 400;

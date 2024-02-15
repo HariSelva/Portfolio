@@ -13,6 +13,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="shortcut icon" href="./media/icon/favicon.ico" type="image/x-icon">
+    
+    <!-- Settin up MathJax for mathemtical equations and making it so that it automatically adds the equation numbers -->
+    <script>
+      MathJax = {
+        tex: {
+          tags: 'ams'  // should be 'ams', 'none', or 'all'
+        }
+      };
+      </script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
   </head>
 
   <body id="page-top">
@@ -306,38 +316,275 @@
         </div>
       </section>
 
+      <!-- Turn Calculation section into template to avoid rendering it as it is still a work in progress -->
+<template>
       <!-- SECTION 4: Calculations -->
-<!--       
+      
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="calculations">
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">Calculations</h2>
-
           <div class="container">
-            <div class="row"> 
-              <div class="column_3">
-                <figure>
-                  <img src="./media/Walking-Isometric.gif" style="width: 100%;">
-                  <figcaption>Isometric View</figcaption>
-                </figure>
+            To make the hexapod walk, we need to be able to determine the servo angles required to reach a certain postion. To do this 
+            we need an inverse kinematic model, which will take a coordinate in x, y, and z and return the angles for each servo. We 
+            also need the forward kinematics to be able to determine the current position based on the servo angles. Since, I have 
+            chosen a symmetrical design, I only need to be able to calculate values for the first leg. The values for the rest of the 
+            legs can be determined by completing a rotation about the origin of the base aka the global origin. The first leg, is 
+            defined as the left horizontal leg (aka when &theta; = 0&deg;). The rest of the legs are number going in a counter-clockwise 
+            manner (i.e., leg is when &theta; = 45&deg;). The picture below showcases the angle offsets for each leg.
+
+            <br>
+            <img src="./media/LegAngles-TopView.png" style="width: 50%;"  class="center">
+            <br>
+
+            Now that we've determined that we only need to focus on Leg 1, let's take a look at how the legs moves. Each leg has 3 
+            joints, which can move from 0&deg; to 180&deg;. The motion of each joint of the legs are shown below, along with its 
+            variable name. Note that 0&deg; is the 6 o'clock position, while the 12 o'clock position is 180&deg;. These values are 
+            what will be fed to the servos during operation, or to the CAD model for animations.
+
+            <br><br>
+            <!-- Animations - Photo Grid -->
+            <div class="container">
+              <div class="row"> 
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Motion-Femur.gif" style="width: 100%;">
+                    <figcaption>Motion of the Femur. Angle denoted by a1.</figcaption>
+                  </figure>
+                </div>
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Motion-Tibia.gif" style="width: 100%;">
+                    <figcaption>Motion of the Tibia. Angle denoted by a2.</figcaption>
+                  </figure>
+                </div>
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Motion-Coxa.gif" style="width: 100%;">
+                    <figcaption>Motion of the Coxa. Angle denoted by a3.</figcaption>
+                  </figure>
+                </div>
               </div>
-              <div class="column_3">
-                <figure>
-                  <img src="./media/Walking-Side.gif" style="width: 100%;">
-                  <figcaption>Side View</figcaption>
-                </figure>
+            </div>
+            <br>
+            
+            Now we can move onto deriving the kinematic equations. As it is the easier of the two, let's start with the forward 
+            kinematics. To do this, we can simplify the leg by representing it with just a few lines, and then analyzing the side and 
+            top views. These diagrams are shown below. Please click on the image to open a larger version (in a new tab) if need be.
+            
+            <br><br>
+            <!-- Forward Kinematics Diagrams - Photo Grid -->
+            <div class="container">
+              <div class="row"> 
+                <div class="column_2">
+                  <a href="./media/FWDKinematics-SideView.png" target="_blank">
+                    <figure>
+                      <img src="./media/FWDKinematics-SideView.png" style="width: 100%;">
+                      <figcaption>Side View</figcaption>
+                    </figure>
+                  </a>
+                  <a href="./media/FWDKinematics-SideView-IsolatedSketch.png" target="_blank">
+                    <figure>
+                      <img src="./media/FWDKinematics-SideView-IsolatedSketch.png" style="width: 100%;">
+                      <figcaption>Side View - Sketch Only</figcaption>
+                    </figure>
+                  </a>
+                </div>
+                <div class="column_2">
+                  <a href="./media/FWDKinematics-TopView.png" target="_blank">
+                    <figure>
+                      <img src="./media/FWDKinematics-TopView.png" style="width: 100%;">
+                      <figcaption>Top View</figcaption>
+                    </figure>
+                  </a>
+                  <a href="./media/FWDKinematics-TopView-IsolatedSketch.png" target="_blank">
+                    <figure>
+                      <img src="./media/FWDKinematics-TopView-IsolatedSketch.png" style="width: 100%;">
+                      <figcaption>Top View - Sketch Only</figcaption>
+                    </figure>
+                  </a>
+                </div>
               </div>
-              <div class="column_3">
-                <figure>
-                  <img src="./media/Walking-Top.gif" style="width: 100%;">
-                  <figcaption>Top View</figcaption>
-                </figure>
+              </div>
+            </div>
+            <br>
+
+            We can making some observations about these diagrams. Note that the global origin, that is defined defers from the part 
+            origin in the CAD model. This is because while desiging, it made sense to have the origin be at the centre. However, while
+            deriving the equations, it made much more sense to have the origin be in line horizontally with the coxa joint. As well, 
+            the angles for each joint are different from the actual angles as defined earlier. As such, we'll need a way convert between
+            the two angles. Equations 1, 2, and 3 below showcase the way to convert between the actual angles (a_) to the forward 
+            kinematics angles (q_).
+
+            <br>
+            \begin{equation}
+             q1 = a1 - 90&deg;
+            \end{equation}
+            \begin{equation}
+             q2 = a2 - 90&deg;
+            \end{equation}
+            \begin{equation}
+             q3 = a3 - 90&deg;
+            \end{equation}
+
+            Now let's start deriving the equations. We'll look at the side view first. For our convience, we'll round the Tibia length 
+            to 189 mm. As well, we'll use the exact values directly in our equations, but in the code, it shall be replaced by the 
+            corresponding variable names to allow for easy modifications if these lengths change. Note, that this view only considers 
+            the scenario when the coxa angle is in its initial position (q3 = 0&deg; or a3 = 90&deg;). This is why the horizontal 
+            length is labeled as x'. We'll determine the general equation when we look at the top view. The equations are as follows:
+
+            <br>
+            \begin{equation}
+             x' = 140 + 55 + 135cos(q_3)+ 189cos(q1+q2)
+            \end{equation}
+
+            \begin{equation}
+             z = 135sin(q_3)+ 189sin(q1+q2)
+            \end{equation}
+
+            Now let's look at the top view. From the diagram, we can see that part of the leg is represented by H. This is the 
+            x' component (Equation 4) that we derived from the side view, but without the base to coxa length. Thus we get the 
+            following equations:
+
+            <br>
+            \begin{equation*}
+             H = x' - 140
+            \end{equation*}
+            \begin{equation*}
+             H = 55 + 135cos(q_3)+ 189cos(q1+q2)
+            \end{equation*}
+            
+            <br>
+            \begin{equation*}
+             x = 140 + Hcos(q3)
+            \end{equation*}
+            \begin{equation}
+             x = 140 + [55 + 135cos(q_3)+ 189cos(q1+q2)]cos(q3)
+            \end{equation}
+
+            <br>
+            \begin{equation*}
+             y = Hsin(q3)
+            \end{equation*}
+            \begin{equation}
+             y = [55 + 135cos(q_3)+ 189cos(q1+q2)]sin(q3)
+            \end{equation}            
+            
+            Thus the x, y, and z positions of leg 1 can be expressed by Equations 6, 7 and 5, respectively. Now, let's move onto the 
+            inverse kinematics. Once again, we can make diagrams to help us derive the equations.
+
+            <br><br>
+            <!-- Backward Kinematics Diagrams - Photo Grid -->
+            <div class="container">
+              <div class="row"> 
+                <div class="column_2">
+                  <a href="./media/BWDKinematics-SideView.png" target="_blank">
+                    <figure>
+                      <img src="./media/BWDKinematics-SideView.png" style="width: 100%;">
+                      <figcaption>Side View</figcaption>
+                    </figure>
+                  </a>
+                  <a href="./media/BWDKinematics-SideView-IsolatedSketch.png" target="_blank">
+                    <figure>
+                      <img src="./media/BWDKinematics-SideView-IsolatedSketch.png" style="width: 100%;">
+                      <figcaption>Side View - Sketch Only</figcaption>
+                    </figure>
+                  </a>
+                </div>
+                <div class="column_2">
+                  <a href="./media/BWDKinematics-TopView.png" target="_blank">
+                    <figure>
+                      <img src="./media/BWDKinematics-TopView.png" style="width: 100%;">
+                      <figcaption>Top View</figcaption>
+                    </figure>
+                  </a>
+                  <a href="./media/BWDKinematics-TopView-IsolatedSketch.png" target="_blank">
+                    <figure>
+                      <img src="./media/BWDKinematics-TopView-IsolatedSketch.png" style="width: 100%;">
+                      <figcaption>Top View - Sketch Only</figcaption>
+                    </figure>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            Like with the forward kinematics, we can making some observations about these diagrams. Note that this time, we have two 
+            additional coordinate frames. This is to help with simplify the equations the need to be derived. The angles for each joint 
+            are , once again, different from the actual angles. Note, that the q_ angles here are not necessarily equivalent to the 
+            q_ angles from earlier. The conversion from the q_ angles to the actual angles, a_, is shown below.
+
+            <br>
+            \begin{equation}
+             a1 = q1 + 90&deg;
+            \end{equation}
+            \begin{equation}
+             a2 = 90&deg; - q2
+            \end{equation}
+            \begin{equation}
+             a3 = q3 + 90&deg;
+            \end{equation}
+
+            Now let's derive the equations, starting with q3 in the top view. We know X and Y as that is the position for which we want 
+            to find the angles. As such we can get the coxa angle using the trigonometric ratios for right triangles.
+            <br>
+            \begin{equation}
+             q3 = tan^{-1}(\frac{Y}{X-140})
+            \end{equation}
+
+            <br><br>
+            <!-- Animations - Photo Grid -->
+            <div class="container">
+              <div class="row"> 
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Walking-IsometricView.gif" style="width: 100%;">
+                    <figcaption>Isometric View</figcaption>
+                  </figure>
+                </div>
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Walking-SideView.gif" style="width: 100%;">
+                    <figcaption>Side View</figcaption>
+                  </figure>
+                </div>
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Walking-TopView.gif" style="width: 100%;">
+                    <figcaption>Top View</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            <!-- Animations - Photo Grid -->
+            <div class="container">
+              <div class="row"> 
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Walking-LargeStep-Isometric.gif" style="width: 100%;">
+                    <figcaption>Isometric View</figcaption>
+                  </figure>
+                </div>
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Walking-LargeStep-Side.gif" style="width: 100%;">
+                    <figcaption>Side View</figcaption>
+                  </figure>
+                </div>
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Walking-LargeStep-Top.gif" style="width: 100%;">
+                    <figcaption>Top View</figcaption>
+                  </figure>
+                </div>
               </div>
             </div>
 
           </div>
         </div>
-      </section> -->
+      </section>
 
+</template>
       <!-- SECTION 5: Budget -->
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="budget">
@@ -452,7 +699,7 @@
                     legs (i.e have rubber leg tips).
                   </li>
                   <li>
-                    Alternatively, a shock absorber (i.e. springs, dampers, etc.) can be installed in the legs to absorb some of
+                    Alternatively, a shock absorber (i.e. springs, dampers, rubber feet, etc.) can be installed in the legs to absorb some of
                     the force.
                   </li>
                   <li>
@@ -461,6 +708,32 @@
                   </li>
                 </ul>
               </li>
+              <li>Tangled Wires
+                <ul>
+                  <li>
+                    Each servo will have a wire that will need to be plugged into the Arduino in the main body of the Hexapod. This 
+                    means 18 separate cables going into the main body. With the movement of the legs, these wire can potentially get 
+                    tangled or even caught on other objects. To clean things up, one solution would be to use wire/cable sleeves to 
+                    bundle the cables for each leg. This way there are only 6 "cables" and as they are being held together by the 
+                    sleeve, the chances of them being tangled is reduced.
+                  </li>
+                  <li>
+                    Alternatively and preferably, is to design the various leg components such that the wires travel through them. This would 
+                    not only provide protection to the wires, ensuring they can't be tangled or caught on objects, it would also allow for a 
+                    cleaner looking robot.
+                  </li>
+                </ul>
+              </li>
+              <li>Leg Slip
+                <ul>
+                  <li>
+                    On smooth surfaces, the legs may slip, which can cause the robot to fall especially if it is trying to climb up a 
+                    surface. To reduce this, more grip can be added to the legs, in the form of runner feet, which will have more 
+                    friction with the ground. Additionally, it will also soften some of the impact from the legs hitting the ground.
+                  </li>
+                </ul>
+              </li>
+            </ol>
 
           </div>
         </div>
@@ -592,6 +865,18 @@
               <li>Add additional sensors (i.e. Ultrasonic sensor, limit switches, etc.)</li>
               <li>Start moving design into alternate software (likely Fusion360) in preparation for SolidWorks license expiration</li>
               <li>Find a better battery</li>
+              <li>Design a better cable management system
+                <ol class="lower-alpha">
+                  <li>Build built at least one leg to better visualize the placement of the wires and where they can be fed through</li>
+                  <li>Design new leg components with hollow compartments where the wires can be fed through</li>
+                  <li>Print and build new leg</li>
+                  <li>Iterate if needed</li>
+                 </ol>
+              </li>
+              <li>
+                Design and implement integration of sensors (most likely limit switches) in the legs, to sense when it is touching 
+                the ground. This wil allow for more versatility when navigating through uneven terrain.
+              </li>
            </ol>
           </div>
         </div>
