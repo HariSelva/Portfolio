@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="shortcut icon" href="./media/icon/favicon.ico" type="image/x-icon">
     
-    <!-- Settin up MathJax for mathemtical equations and making it so that it automatically adds the equation numbers -->
+    <!-- Setting up MathJax for mathematical equations and making it so that it automatically adds the equation numbers -->
     <script>
       MathJax = {
         tex: {
@@ -56,9 +56,9 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#CAD">CAD Model</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#calculations">Calculations</a>
-          </li> -->
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#kinematics">Kinematics</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#budget">Budget</a>
           </li>
@@ -67,6 +67,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#result">Results and Next Steps</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="https://github.com/HariSelva/Hexapod/" target="_blank">GitHub</a>
           </li>
         </ul>
       </div>
@@ -82,7 +85,6 @@
           <h1 class="name-mobile mb-0">Hexapod <span class="text-primary">Robot</span></h1>
 
           <div class="container">
-            <p class="introduction-mobile lead mb-4">
               <img src="./media/Hexapod Isometric.png" style="width: 55%; height: 55%;" class="center">
 
               One of the courses that I most enjoyed during my time at UWaterloo was MTE 544 - Autonomous Mobile Robots. It inspired 
@@ -91,7 +93,6 @@
               be done. As well, taking into account my other interests such as nerf blasters, it would also be interesting to have a 
               mobile nerf turret. As such, this project would need to be a multi-terrain robotic platform, on which future projects, 
               whether they be a nerf turret, or an autonomous mobile robot can be built upon.
-            </p>
           </div>
 
         </div>
@@ -316,30 +317,39 @@
         </div>
       </section>
 
-      <!-- Turn Calculation section into template to avoid rendering it as it is still a work in progress -->
-<template>
-      <!-- SECTION 4: Calculations -->
+      <!-- SECTION 4: Kinematic Equations -->
       
-      <section class="section3 p-3 p-lg-5 d-flex timetime" id="calculations">
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="kinematics">
         <div class="w-100">
-          <h2 class="mb-4 timeline-left-heading">Calculations</h2>
+          <h2 class="mb-4 timeline-left-heading">Kinematic Equations</h2>
           <div class="container">
-            To make the hexapod walk, we need to be able to determine the servo angles required to reach a certain postion. To do this 
+            To make the hexapod walk, we need to be able to determine the servo angles required to reach a certain position. To do this 
             we need an inverse kinematic model, which will take a coordinate in x, y, and z and return the angles for each servo. We 
             also need the forward kinematics to be able to determine the current position based on the servo angles. Since, I have 
             chosen a symmetrical design, I only need to be able to calculate values for the first leg. The values for the rest of the 
-            legs can be determined by completing a rotation about the origin of the base aka the global origin. The first leg, is 
-            defined as the left horizontal leg (aka when &theta; = 0&deg;). The rest of the legs are number going in a counter-clockwise 
-            manner (i.e., leg is when &theta; = 45&deg;). The picture below showcases the angle offsets for each leg.
+            legs can be determined by completing a rotation about Z-axis of the base origin aka the global origin. The first leg, 
+            is defined as the right horizontal leg (aka when &theta; = 0&deg;). The rest of the legs are numbered in a 
+            counter-clockwise manner (i.e., leg 2 is when &theta; = 45&deg;). The picture below showcases the angle offsets for each 
+            leg.
 
             <br>
             <img src="./media/LegAngles-TopView.png" style="width: 50%;"  class="center">
             <br>
 
-            Now that we've determined that we only need to focus on Leg 1, let's take a look at how the legs moves. Each leg has 3 
-            joints, which can move from 0&deg; to 180&deg;. The motion of each joint of the legs are shown below, along with its 
-            variable name. Note that 0&deg; is the 6 o'clock position, while the 12 o'clock position is 180&deg;. These values are 
-            what will be fed to the servos during operation, or to the CAD model for animations.
+            Now that we've determined that we only need to focus on Leg 1, we need to be able to rotate coordinates describing the 
+            position of any leg n in the base frame to the equivalent position for leg 1. To do this we can use the rotation matrix 
+            shown in Equation 1 below. Note that to move from Leg 1 to any Leg n, we can make theta (&theta;) positive. This is due 
+            to the fact that the negative direction is clockwise.
+
+            <br>
+            \begin{equation}
+              T_{LegnToLeg1} = \begin{bmatrix} cos(-&theta;) & -sin(-&theta;) & 0 & 0 \\ sin(-&theta;) & cos(-&theta;) & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}
+            \end{equation}
+            
+            The last thing we need to do before moving onto the derivation, is to look at how the legs moves. Each leg has 3 joints, 
+            which can move from 0&deg; to 180&deg;. The motion of each joint of the legs are shown below, along with its variable name. 
+            Note that 0&deg; is the 6 o'clock position, while the 12 o'clock position is 180&deg;. These values are what will be fed to 
+            the servos during operation, or to the CAD model for animations.
 
             <br><br>
             <!-- Animations - Photo Grid -->
@@ -367,7 +377,7 @@
             </div>
             <br>
             
-            Now we can move onto deriving the kinematic equations. As it is the easier of the two, let's start with the forward 
+            Now we can start the derivation of the kinematic equations. As it is the easier of the two, let's start with the forward 
             kinematics. To do this, we can simplify the leg by representing it with just a few lines, and then analyzing the side and 
             top views. These diagrams are shown below. Please click on the image to open a larger version (in a new tab) if need be.
             
@@ -408,69 +418,71 @@
             </div>
             <br>
 
-            We can making some observations about these diagrams. Note that the global origin, that is defined defers from the part 
-            origin in the CAD model. This is because while desiging, it made sense to have the origin be at the centre. However, while
-            deriving the equations, it made much more sense to have the origin be in line horizontally with the coxa joint. As well, 
-            the angles for each joint are different from the actual angles as defined earlier. As such, we'll need a way convert between
-            the two angles. Equations 1, 2, and 3 below showcase the way to convert between the actual angles (a_) to the forward 
-            kinematics angles (q_).
+            We can making some observations about these diagrams. Note that the global/base origin differs from the part origin in the 
+            CAD model. This is because while designing, it made sense to have the origin be at the centre. However, while deriving the 
+            equations, it made much more sense to have the origin be collinear with the coxa joint. As well, the angles for 
+            each joint are different from the actual angles as defined earlier. As such, we'll need a way convert between the two 
+            angles. Equations 2, 3, and 4 below showcase the way to convert between the actual angles (a_) to the forward kinematics 
+            angles (q_).
 
             <br>
             \begin{equation}
-             q1 = a1 - 90&deg;
+              q1 = a1 - 90&deg;
             \end{equation}
             \begin{equation}
-             q2 = a2 - 90&deg;
+              q2 = a2 - 90&deg;
             \end{equation}
             \begin{equation}
-             q3 = a3 - 90&deg;
+              q3 = a3 - 90&deg;
             \end{equation}
 
-            Now let's start deriving the equations. We'll look at the side view first. For our convience, we'll round the Tibia length 
-            to 189 mm. As well, we'll use the exact values directly in our equations, but in the code, it shall be replaced by the 
+            Now let's start deriving the equations. We'll look at the side view first. For our convenience, we'll round the Tibia length 
+            to 189 mm. As well, we'll use the exact values directly in our equations, although in the code, it shall be replaced by the 
             corresponding variable names to allow for easy modifications if these lengths change. Note, that this view only considers 
             the scenario when the coxa angle is in its initial position (q3 = 0&deg; or a3 = 90&deg;). This is why the horizontal 
             length is labeled as x'. We'll determine the general equation when we look at the top view. The equations are as follows:
 
             <br>
             \begin{equation}
-             x' = 140 + 55 + 135cos(q_3)+ 189cos(q1+q2)
+              x' = 140 + 55 + 135cos(q_3)+ 189cos(q1+q2)
             \end{equation}
 
             \begin{equation}
-             z = 135sin(q_3)+ 189sin(q1+q2)
+              z = 135sin(q_3)+ 189sin(q1+q2)
             \end{equation}
 
             Now let's look at the top view. From the diagram, we can see that part of the leg is represented by H. This is the 
-            x' component (Equation 4) that we derived from the side view, but without the base to coxa length. Thus we get the 
+            x' component (Equation 5) that we derived from the side view, but without the base to coxa length. Thus, we get the 
             following equations:
 
             <br>
             \begin{equation*}
-             H = x' - 140
+              H = x' - 140
             \end{equation*}
             \begin{equation*}
-             H = 55 + 135cos(q_3)+ 189cos(q1+q2)
+              H = 55 + 135cos(q_3)+ 189cos(q1+q2)
             \end{equation*}
             
             <br>
             \begin{equation*}
-             x = 140 + Hcos(q3)
+              x = 140 + Hcos(q3)
             \end{equation*}
             \begin{equation}
-             x = 140 + [55 + 135cos(q_3)+ 189cos(q1+q2)]cos(q3)
+              x = 140 + [55 + 135cos(q_3)+ 189cos(q1+q2)]cos(q3)
             \end{equation}
 
             <br>
             \begin{equation*}
-             y = Hsin(q3)
+              y = Hsin(q3)
             \end{equation*}
             \begin{equation}
-             y = [55 + 135cos(q_3)+ 189cos(q1+q2)]sin(q3)
+              y = [55 + 135cos(q_3)+ 189cos(q1+q2)]sin(q3)
             \end{equation}            
             
-            Thus the x, y, and z positions of leg 1 can be expressed by Equations 6, 7 and 5, respectively. Now, let's move onto the 
-            inverse kinematics. Once again, we can make diagrams to help us derive the equations.
+            Thus, the x, y, and z positions of leg 1 can be expressed by Equations 7, 8 and 6, respectively. To get the positions of 
+            the other legs, this value can be rotated by the corresponding amount using matrix in Equation 1 above. Now, let's move 
+            onto the inverse kinematics. Once again, we can make diagrams to help us derive the equations. These diagrams are shown 
+            below. Please click on the image to open a larger version (in a new tab) if need be.
 
             <br><br>
             <!-- Backward Kinematics Diagrams - Photo Grid -->
@@ -509,27 +521,152 @@
             <br>
 
             Like with the forward kinematics, we can making some observations about these diagrams. Note that this time, we have two 
-            additional coordinate frames. This is to help with simplify the equations the need to be derived. The angles for each joint 
-            are , once again, different from the actual angles. Note, that the q_ angles here are not necessarily equivalent to the 
+            additional coordinate frames. This is to help us simplify the equations that need to be derived. The angles for each joint 
+            are, once again, different from the actual angles. Note that the q_ angles here are not necessarily equivalent to the 
             q_ angles from earlier. The conversion from the q_ angles to the actual angles, a_, is shown below.
 
             <br>
             \begin{equation}
-             a1 = q1 + 90&deg;
+              a1 = q1 + 90&deg;
             \end{equation}
             \begin{equation}
-             a2 = 90&deg; - q2
+              a2 = 90&deg; - q2
             \end{equation}
             \begin{equation}
-             a3 = q3 + 90&deg;
+              a3 = q3 + 90&deg;
             \end{equation}
 
             Now let's derive the equations, starting with q3 in the top view. We know X and Y as that is the position for which we want 
-            to find the angles. As such we can get the coxa angle using the trigonometric ratios for right triangles.
+            to find the angles. As such we can get the coxa angle using the trigonometric ratios for right triangles. The reason for 
+            the subtraction of 140 mm from X is due to the translation to move from the Base frame to the Coxa frame.
+
             <br>
             \begin{equation}
-             q3 = tan^{-1}(\frac{Y}{X-140})
+              q3 = tan^{-1} \left( \frac{Y}{X-140} \right)
             \end{equation}
+
+            Looking at the side view, we can first start by moving the coordinates to the equivalent position, if the coxa was at 
+            90 degrees. This can be done with the use of a transformation matrix. To make this transformation matrix we need to first
+            rotate the coordinate by q3 (which we found above). As we are moving clockwise, it becomes -q3. Then we can translate the 
+            coordinates by the length between the coxa and femur, which is 55 mm. This transformation matrix is shown in Equation 13. 
+            Using this matrix, we can transform the coordinates using Equation 14 below. Note that (x', y', z') is the coordinates 
+            after they have been rotated to leg1 (using the rotation matric shown in Equation 1) and translated to the coxa.
+
+            <br>
+            \begin{equation*}
+              T_{CoxaToFemur} = T_{Translation} * T_{Rotation}
+            \end{equation*}
+            \begin{equation*}
+              T_{CoxaToFemur} = \begin{bmatrix} 1 & 0 & 0 & -55 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} cos(-q3) & -sin(-q3) & 0 & 0 \\ sin(-q3) & cos(-q3) & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}
+            \end{equation*}
+            \begin{equation}
+              T_{CoxaToFemur} = \begin{bmatrix} cos(-q3) & -sin(-q3) & 0 & -55 \\ sin(-q3) & cos(-q3) & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}
+            \end{equation}
+
+            <br>
+            \begin{equation*}
+              \begin{bmatrix} x'' \\ y'' \\ z'' \\ 1 \end{bmatrix} = T_{CoxaToFemur} \begin{bmatrix} x' \\ y' \\ z' \\ 1 \end{bmatrix}
+            \end{equation*}
+            \begin{equation}
+              \begin{bmatrix} x'' \\ y'' \\ z'' \\ 1 \end{bmatrix} = \begin{bmatrix} cos(-q3) & -sin(-q3) & 0 & -55 \\ sin(-q3) & cos(-q3) & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}  \begin{bmatrix} x' \\ y' \\ z' \\ 1 \end{bmatrix}
+            \end{equation}
+
+            For the following equations we only need the x'' and z''. x'' is labeled as D in the diagram above, while z'' happens to be 
+            just z. Using trigonometric ratios along with the cosine law, we can solve for the intermediate values shown in the 
+            diagram.
+
+            <br>
+            \begin{equation}
+              a = tan^{-1} \left( \frac{Z}{D} \right)
+            \end{equation}
+
+            <br>
+            \begin{equation*}
+              L = \sqrt{D^2 + Z^2}
+            \end{equation*}
+
+            <br>
+            \begin{equation*}
+              b = cos^{-1} \left( \frac{L^2 + 135^2-189^2}{2L(135)} \right)
+            \end{equation*}
+            \begin{equation*}
+              b = cos^{-1} \left( \frac{ \left( \sqrt{D^2 + Z^2} \right)^2 + 135^2-189^2}{2L(135)}  \right)
+            \end{equation*}
+            \begin{equation}
+              b = cos^{-1} \left( \frac{D^2 + Z^2 + 135^2-189^2}{2  \left( \sqrt{D^2 + Z^2} \right) (135)}  \right)
+            \end{equation}
+
+            <br>
+            \begin{equation*}
+              c = cos^{-1} \left( \frac{135^2 + 189^2-L^2}{2(135)(189)} \right)
+            \end{equation*}
+            \begin{equation*}
+              c = cos^{-1} \left( \frac{135^2 + 189^2- \left(\sqrt{D^2 + Z^2} \right)^2}{2(135)(189)} \right)
+            \end{equation*}
+            \begin{equation}
+              c = cos^{-1} \left( \frac{135^2 + 189^2-(D^2 + Z^2)}{2(135)(189)} \right)
+            \end{equation}
+
+            Using Equations 15, 16 and 17, we can determine the remaining two angles as seen below.
+
+            <br>
+            \begin{equation}
+              q1 = b - a
+            \end{equation}
+            \begin{equation}
+              q2 = 180 - c
+            \end{equation}
+
+            The angles from Equations 12, 18, and 19 can then be converted to the actual angles using Equations 9, 10, and 11 above. 
+            Using these equations a script was created in MATLAB (which can be found on my <a href="https://github.com/HariSelva/Hexapod" target="_blank"><strong>GitHub</strong></a>) 
+            to determine the workspace of the Hexapod legs. This would be the area that each leg can reach based on its limitations. 
+            The figure below showcases the workspace of the Hexapod's legs when the Hexapod's base origin is 100 mm above the ground 
+            (aka z = -100 mm). Each leg is denoted by a different colour. Note that certain areas are overlapping, which means we need 
+            to be careful of potential collisions.
+            
+            <figure>
+              <img src="./media/Workspace-AllLeg.png" style="width: 40%;" class="center">
+              <figcaption>Workspace of all the Legs</figcaption>
+            </figure>
+            
+            We can define a step length and an origin for the feet of each leg. The origin should be in the center of the workspace, 
+            and the circle formed with this origin should be fully within the boundaries of the workspace. The diameter of this circle 
+            is the step length. The step length came out to be 100 mm. The various workspaces along with the bounded area where a step 
+            is possible is shown below. By limiting a step to this circular area, we can prevent collisions as well as mathematical 
+            errors from trying to use the inverse kinematic equations for a position that is impossible to reach.
+
+            <!-- Workspace Graphs - Photo Grid -->
+            <div class="container">
+              <div class="row"> 
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Workspace-Leg1&4.png" style="width: 100%;">
+                    <figcaption>Legs 1 (right) and 4 (left)</figcaption>
+                  </figure>
+                </div>
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Workspace-Leg2&5.png" style="width: 100%;">
+                    <figcaption>Legs 2 (top-right) and 5 (bottom-left)</figcaption>
+                  </figure>
+                </div>
+                <div class="column_3">
+                  <figure>
+                    <img src="./media/Workspace-Leg3&6.png" style="width: 100%;">
+                    <figcaption>Legs 3 (top-left) and 6 (bottom-right)</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            To be able to make the hexapod walk, we need at least 4 coordinates to transition between. These are: 1) the 
+            origin, 2) the forward position, 3) the origin but translated vertically, and 4) the backward position. Note that the z 
+            value for 3rd coordinate is z = 0 mm, while for the rest is z = -100 mm. Using the MATLAB script, the required angles for 
+            these positions were determined. Then by inputting these angles into the Mate Controller in SolidWorks, a motion study 
+            animation can be created showcasing the hexapod walking forward. Of course, in reality, when making the Hexapod walk, we 
+            will need more than 4 points to ensure a smooth gait. This can be done by using something like a Bezier curve to 
+            interpolate points on the walking path. However, this interpolation is done for us by SolidWorks. The walking animation 
+            from various views is shown below.
 
             <br><br>
             <!-- Animations - Photo Grid -->
@@ -555,6 +692,32 @@
                 </div>
               </div>
             </div>
+
+            If we want to be able to take a larger step, we can still determine a possible path which can allow us to do this without 
+            collisions or errors. For a step length of 200 mm moving forward, the origin of legs 2, 3, 5 and 6 will need to moved. 
+            As well, note that this is only possible in certain directions. The workspaces of legs 1 and legs 2 along with the new 
+            path are shown below. The corresponding paths for the remaining legs can be found by rotating these two workspaces.
+
+            <br><br>
+            <!-- Workspace Graphs - Photo Grid -->
+            <div class="container">
+              <div class="row"> 
+                <div class="column_2">
+                  <figure>
+                    <img src="./media/Workspace-LargeStep-Leg1.png" style="width: 100%;">
+                    <figcaption>Leg 1 path with a step length of 200 mm</figcaption>
+                  </figure>
+                </div>
+                <div class="column_2">
+                  <figure>
+                    <img src="./media/Workspace-LargeStep-Leg2.png" style="width: 100%;">
+                    <figcaption>Leg 2 path with a step length of 200 mm</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            The animations for when the Hexapod uses a larger step length is shown below.
 
             <!-- Animations - Photo Grid -->
             <div class="container">
@@ -584,7 +747,6 @@
         </div>
       </section>
 
-</template>
       <!-- SECTION 5: Budget -->
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="budget">
@@ -733,6 +895,15 @@
                   </li>
                 </ul>
               </li>
+              <li>Servo Rotation Limits 
+                <ul>
+                  <li>
+                    When installing the servos, they need to be installed in such a way that all 180&deg; of travel are available for 
+                    use. To do this, a helper script can be written, which moves the servo to a known position such as 90&deg; before 
+                    installation. This way, the legs move as expected based on my calculations, without the need for offsets.
+                  </li>
+                </ul>
+              </li>
             </ol>
 
           </div>
@@ -875,7 +1046,7 @@
               </li>
               <li>
                 Design and implement integration of sensors (most likely limit switches) in the legs, to sense when it is touching 
-                the ground. This wil allow for more versatility when navigating through uneven terrain.
+                the ground. This will allow for more versatility when navigating through uneven terrain.
               </li>
            </ol>
           </div>
