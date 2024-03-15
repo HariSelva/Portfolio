@@ -756,6 +756,124 @@
         <div class="w-100">
           <h2 class="mb-4 timeline-left-heading">Torque Calculations</h2>
           <div class="container">
+            Mass = 6.52535 kg
+
+            While we have a plausible design as well as a working kinematic model, we still need to ensure that the motors that were 
+            selected for this robot have sufficient torque. To do so, we have to create a simplified free-body diagram and solve for
+            the unknowns. We will take a look at the situation where the robot has lifted up 3 of its legs, and is standing on only its 
+            3 other legs. We will consider this scenario as at any point in time, the robot will always have 3 legs on the ground. The 
+            image below showcases the scenario that we will be considering.
+
+            <br>
+            <img src="./media/Torque - Standing Position.png" style="width: 60%;" class="center">
+
+            Based on this image, we can make the observation that the left and right side of robot are not equal due to the fact that 
+            there is only one leg supporting the left side, while there is 2 for the right. As such, the forces on the left leg will 
+            be higher than that on the right legs. As well, as the two legs on the right side are symmetrical in their position, we 
+            can assume that the forces on them are similar. With these assumptions and observations, we can create a free-body diagram.
+            This is shown below.
+
+            <br>
+            <img src="./media/Torque - Free-Body Diagram.png" style="width: 60%;" class="center">
+
+            In this diagram, F<sub>g</sub> is the force due to gravity and is calculated based on the weight of the model in SolidWorks.
+            This comes out to be about 6.5 kg. In reality, the weight will be lower than this, due to the fact that not all 3D printed 
+            parts (especially large parts) will not have a 100% infill. In other words most of the large parts will not be solid.
+            SolidWorks assumes the parts are solid and thus calculates the weight accordingly. We shall use this weight anyways as it 
+            allows for our calculations to be more conservative. As mentioned eariler (as well as denoted by the colours), 
+            N<sub>2</sub> = N<sub>3</sub>, which also leads to T<sub>3</sub> = T<sub>5</sub> and T<sub>4</sub> = T<sub>6</sub>. We only need 
+            to determine the maximum torque, as that is how choose our actuator. Since T<sub>1</sub> > T<sub>3</sub> and 
+            T<sub>2</sub> > T<sub>4</sub>, we will only need to determine T<sub>1</sub> and T<sub>2</sub>.
+
+            <br><br>
+            Let's first start by doing a force summation. In this situation, we know that the robot is not moving up or down, and thus 
+            the forces need to sum to zero. This gives us Equation 20 below.
+
+            <br>
+            \begin{equation*}
+              \sum F = F_g - N_1 - N_2 - N_3
+            \end{equation*}
+            \begin{equation*}
+              0 = F_g - N_1 - N_2 - N_2
+            \end{equation*}
+            \begin{equation}
+              F_g = N_1 + 2N_2
+            \end{equation}
+
+            <br>
+            We know the weight but don't know either of the normal forces. To calculate these we can take a moment about end of the 
+            left leg. This way we can ignore N<sub>1</sub> temporarily and create an equation where we have only one unknown. Based on 
+            the diagram below, we can determine the distance required to calculate the moment caused by each of the forces. Similar to 
+            before, the sum of moments is also zero, as the robot is not rotating.
+
+            <br>
+            <img src="./media/Torque - Moment Distance Diagram.png" style="width: 60%;" class="center">
+
+            <br>
+            \begin{equation*}
+              \sum M = M_{F_g} - M_{N_2} - M_{N_3}
+            \end{equation*}
+            \begin{equation*}
+              0 = M_{F_g} - M_{N_2} - M_{N_2} 
+            \end{equation*}
+            \begin{equation*}
+              M_{F_g} = 2M_{N_2}
+            \end{equation*}
+            \begin{equation*}
+              ()F_g = 2()N_2
+            \end{equation*}
+            \begin{equation}
+              N_2 = \frac{()F_g} {2()}
+            \end{equation}
+            \begin{equation}
+              N_2 =  N
+            \end{equation}
+
+            <br>
+            Using the result from Equation 22, we can find the value of N<sub>1</sub>, using Equation 20 from earlier. This results in:
+
+            <br>
+            \begin{equation}
+              N_1 =  N
+            \end{equation}
+
+            <br>
+            Now that we know all the forces, we can calculate the necessary torques by taking moments at those joints.
+
+            <br>
+            \begin{equation*}
+              T_1 = -()N_1 - ()F_g + ()N_2 + ()N3
+            \end{equation*}
+            \begin{equation*}
+              T_1 = 2()N_2 -()N_1 - ()F_g
+            \end{equation*}
+            \begin{equation*}
+              T_1 = 2()N_2 -()N_1 - ()F_g
+            \end{equation*}
+            \begin{equation}
+              T_1 =  N \cdot m
+            \end{equation}
+
+            <br>
+            \begin{equation*}
+              T_2 = -()N_1 - ()F_g + ()N_2 + ()N3
+            \end{equation*}
+            \begin{equation*}
+              T_2 = 2()N_2 -()N_1 - ()F_g
+            \end{equation*}
+            \begin{equation*}
+              T_2 = 2()N_2 -()N_1 - ()F_g
+            \end{equation*}
+            \begin{equation}
+              T_2 =  N \cdot m
+            \end{equation}
+
+            <br>
+            The servo motors that I choose at the start of this project has a torque of 29.5 kg&#183;cm of torque (at 5v). To compare 
+            we can convert these units into the more conventional N&#183;m.
+
+
+
             
           </div>
         </div>
