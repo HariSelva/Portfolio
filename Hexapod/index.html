@@ -60,6 +60,9 @@
             <a class="nav-link js-scroll-trigger" href="#kinematics">Kinematics</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#torque">Torque Calculations</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#budget">Budget</a>
           </li>
           <li class="nav-item">
@@ -747,7 +750,241 @@
         </div>
       </section>
 
-      <!-- SECTION 5: Budget -->
+      <!-- SECTION 6: Torque Calculations -->
+      
+      <section class="section3 p-3 p-lg-5 d-flex timetime" id="torque">
+        <div class="w-100">
+          <h2 class="mb-4 timeline-left-heading">Torque Calculations</h2>
+          <div class="container">
+            While we have a plausible design, as well as a working kinematic model, we still need to ensure that the motors that were 
+            selected for this robot have sufficient torque. To do so, we have to create a simplified free-body diagram and solve for
+            the unknowns. We will take a look at the situation where the robot has lifted up 3 of its legs, and is standing on only its 
+            3 other legs. We will consider this scenario as at any point in time, the robot will always have 3 legs on the ground. The 
+            image below showcases the scenario that we will be considering.
+
+            <br>
+            <img src="./media/Torque - Standing Position.png" style="width: 60%;" class="center">
+
+            Based on this image, we can make the observation that the left and right side of robot are not equal due to the fact that 
+            there is only one leg supporting the left side, while there is 2 for the right. As such, the forces on the left leg will 
+            be higher than that on the right legs. As well, as the two legs on the right side are symmetrical in their position, we 
+            can assume that the forces on them are similar. With these assumptions and observations, we can create a free-body diagram.
+            This is shown below.
+
+            <br>
+            <img src="./media/Torque - Free-Body Diagram.png" style="width: 60%;" class="center">
+
+            In this diagram, F<sub>g</sub> is the force due to gravity and is calculated based on the weight of the model in SolidWorks.
+            This comes out to be about 4.75 kg. This is a rough estimate, as the weights of 3D printed parts and even off the shelf 
+            parts will vary slightly from the CAD. As well, the weight of the wires is not included in this measurement. Using this 
+            weight the force of gravity is calculated below:
+
+            <br>
+            \begin{equation*}
+              F_g = mg
+            \end{equation*}
+            \begin{equation*}
+              F_g = (4.75 kg)(9.81 m/s^2)
+            \end{equation*}
+            \begin{equation}
+              F_g = 46.5975 N
+            \end{equation}
+
+            Now that we have the value of F<sub>g</sub>, lets continue with determining the required torque. As mentioned earlier (as 
+            well as denoted by the colours), N<sub>2</sub> = N<sub>3</sub>, which also leads to T<sub>3</sub> = T<sub>5</sub> and 
+            T<sub>4</sub> = T<sub>6</sub>. We only need to determine the maximum torque, as that is the value we will use to choose 
+            our actuator. Since T<sub>1</sub> > T<sub>3</sub> and T<sub>2</sub> > T<sub>4</sub>, we will only need to determine 
+            T<sub>1</sub> and T<sub>2</sub>.
+
+            <br><br>
+            Let's first start by doing a force summation. In this situation, we know that the robot is not moving up or down, and thus 
+            the forces need to sum to zero. This gives us Equation 20 below.
+
+            <br>
+            \begin{equation*}
+              \sum F = F_g - N_1 - N_2 - N_3
+            \end{equation*}
+            \begin{equation*}
+              0 = F_g - N_1 - N_2 - N_2
+            \end{equation*}
+            \begin{equation}
+              F_g = N_1 + 2N_2
+            \end{equation}
+
+            <br>
+            We know the weight but don't know either of the normal forces. To calculate these we can take a moment about end of the 
+            left leg. This way we can ignore N<sub>1</sub> temporarily and create an equation where we have only one unknown. The 
+            diagram below, showcases the horizontal distance from the end of the leg. This is used to calculate the moment caused by 
+            each of the forces. Similar to before, the sum of moments is also zero, as the robot is not rotating.
+
+            <br>
+            <img src="./media/Torque - Moment About Leg Tip.png" style="width: 60%;" class="center">
+
+            <br>
+            \begin{equation*}
+              \sum M = M_{F_g} - M_{N_2} - M_{N_3}
+            \end{equation*}
+            \begin{equation*}
+              0 = M_{F_g} - M_{N_2} - M_{N_2} 
+            \end{equation*}
+            \begin{equation*}
+              M_{F_g} = 2M_{N_2}
+            \end{equation*}
+            \begin{equation*}
+              (405 mm)F_g = 2(691.38 mm)N_2
+            \end{equation*}
+            \begin{equation*}
+              N_2 = \frac{(405 mm)F_g} {2(691.38 mm)}
+            \end{equation*}
+            \begin{equation*}
+              N_2 = \frac{(405 mm)(46.5975 N)} {2(691.38 mm)}
+            \end{equation*}
+            \begin{equation}
+              N_2 = 13.6481 N
+            \end{equation}
+
+            <br>
+            Using the result shown by Equation 22, we can find the value of N<sub>1</sub>, using Equation 21 from earlier. This 
+            results in:
+            
+            <br>
+            \begin{equation*}
+              F_g = N_1 + 2N_2
+            \end{equation*}
+            \begin{equation*}
+              N_1 = F_g - 2N_2
+            \end{equation*}
+            \begin{equation*}
+              N_1 = 46.5975 N - 2(13.6481 N)
+            \end{equation*}
+            \begin{equation}
+              N_1 = 19.3013 N
+            \end{equation}
+
+            <br>
+            Now that we know all the forces, we can calculate the necessary torques by isolating those joints and finding the moments 
+            at those locations. The diagram below showcases the leg isolated from the rest of the hexapod and the distance values to 
+            each joint.
+
+            <br>
+            <img src="./media/Torque - Joint Distances.png" style="width: 60%;" class="center">
+
+            Let's start with T<sub>1</sub>, which is the moment about the joint between the femur and the tibia. First, let's make 
+            another free-body diagram, isolating this joint. This is shown below. Note that we're only concerned about N<sub>1</sub>
+            as that is the bigger of the two normal forces, and since we want to know if this motor is sufficient we only care about 
+            the largest force.
+
+            <br>
+            <img src="./media/Torque - Moment about Tibia Joint.png" style="width: 40%;" class="center">
+
+            <br>
+            \begin{equation*}
+              \sum M = (80.99 mm)N_1 - T_1
+            \end{equation*}
+            \begin{equation*}
+              0 = (80.99 mm)N_1 - T_1
+            \end{equation*}
+            \begin{equation*}
+              T_1 = (80.99 mm)N_1
+            \end{equation*}
+            \begin{equation*}
+              T_1 = (80.99 mm)(19.3013 N)
+            \end{equation*}
+            \begin{equation*}
+              T_1 = (0.08099 m)(19.3013 N)
+            \end{equation*}
+            \begin{equation*}
+              T_1 =  1.5634053 N \cdot m
+            \end{equation*}
+            \begin{equation}
+              T_1 \approx 1.6 N \cdot m
+            \end{equation}
+
+            <br>
+            Next let's find the moment about the joint between the femur and the coxa to determine T<sub>2</sub>. We can once again 
+            make a free body diagram, isolating this joint.
+
+            <br>
+            <img src="./media/Torque - Moment About Femur Joint.png" style="width: 40%;" class="center">
+
+            <br>
+            \begin{equation*}
+              \sum M = (210 mm)N_1 - T_2
+            \end{equation*}
+            \begin{equation*}
+              0 = (210 mm)N_1 - T_2
+            \end{equation*}
+            \begin{equation*}
+              T_2 = (210 mm)N_1
+            \end{equation*}
+            \begin{equation*}
+              T_2 = (210 mm)(19.3013 N)
+            \end{equation*}
+            \begin{equation*}
+              T_2 = (0.21 m)(19.3013 N)
+            \end{equation*}
+            \begin{equation*}
+              T_2 = 4.053273 N \cdot m
+            \end{equation*}
+            \begin{equation}
+              T_2 \approx 4.1 N \cdot m
+            \end{equation}
+
+            <br>
+            The servo motors that I choose at the start of this project has a torque of 29.5 kg&#183;cm of torque (at 5v). This is 
+            an unconventional unit and isn't necessarily correct, but we'll work with it since that's what is provided. To compare we 
+            can convert these units into the more conventional N&#183;m. The kg in this unit should more accurately be expressed as 
+            kg<sub>f</sub> as it is the force on a 1 kg weight in standard Earth sea-level gravity. As such, the conversion can be 
+            done as follows:
+
+            \begin{equation*}
+              T_{servo} = 29.5 kg_f cm
+            \end{equation*}
+            \begin{equation*}
+              T_{servo} = (29.5 kg_f \cdot cm) \left( \frac{9.81 N} {1 kg_f} \right)  \left( \frac{1 m} {100 cm} \right)
+            \end{equation*}
+            \begin{equation*}
+              T_{servo} = 2.89395 N \cdot m
+            \end{equation*}
+            \begin{equation}
+              T_{servo} \approx 2.9 N \cdot m
+            \end{equation}
+
+            Based on the values from Equations 24, 25 and 26, it seems that this servo is sufficient for the tibia, but not for the 
+            femur. This leaves us with three potential solutions: 1) reduce the weight of the hexapod, 2) get a more powerful servo 
+            for the femur, or 3) change the gait from a tripod gait (where three legs are on the ground), to one where 4 or even 5 legs 
+            are on the ground at all times. This would spread the forces between the legs, reducing the torque requirement. 
+
+            <br><br>
+
+            Options 2 is unlikely, as servos with higher torque cost more and will also required more power. Not to mention, they also 
+            weigh more. As such, we'll use options 1 and 3. Weight can easily be reduced through making parts thinner, and also by 
+            cutting away material. We can also prove that option 3 is viable using a similar method as above. However to simplify the 
+            math, we'll assume that the weight is equally distributed along the legs and we'll focus solely on the femur servo, as it 
+            is clear that it experiences the most torque.
+            
+            <!--Note: \left( \right) gives the large brackets that covers the fraction -->
+            <!--Note: \; is to add a big space to between the word (\, would have done a small space) -->
+            \begin{equation*}
+              T_{femur} = (0.21 m) \left( \frac{F_g} {{Number \; of \; legs \; on \; ground}} \right)
+            \end{equation*}
+            \begin{equation}
+              T_{femur} = (0.21 m) \left( \frac{46.5975 N} {{Number \; of \; legs \; on \; ground}} \right)
+            \end{equation}
+
+            Using equation 27, we can calculate the required torque for when we have 4 or 5 legs. This comes out to be approximately
+            2.45 N&#183;m and 1.96 N&#183;m respectively. Both of this is less than the torque that the servo can provide. Of course 
+            this method is slightly less accurate, which can be seen by calculating it for 3 legs, which comes out to be 3.26 N&#183;m. 
+            This is lower than the 4.1 N&#183;m we calculated earlier. However, it is enough to prove that these servos can provide the 
+            necessary torque for a gait where 5 legs are on ground (wave gait) and potentially for a gait with 4 legs (ripple gait). 
+            Combining this with option 1) reducing weight, these motors will be sufficient for our use case.
+            
+          </div>
+        </div>
+      </section>
+
+
+      <!-- SECTION 6: Budget -->
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="budget">
         <div class="w-100">
@@ -791,7 +1028,7 @@
         </div>
       </section>
 
-      <!-- SECTION 6: Possible Issues and Solutions/Prevention Methods -->
+      <!-- SECTION 7: Possible Issues and Solutions/Prevention Methods -->
       
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="issues">
         <div class="w-100">
@@ -910,7 +1147,7 @@
         </div>
       </section>
 
-      <!-- SECTION 7: Results and Next Steps -->
+      <!-- SECTION 8: Results and Next Steps -->
 
       <section class="section3 p-3 p-lg-5 d-flex timetime" id="result">
         <div class="w-100">
@@ -943,8 +1180,9 @@
                 <td>1. Inherently Stable</td>
                 <td>Pass</td>
                 <td>
-                  A hexapod can use its tripod gait to walk in stable manner. As well, due to the six legs, the hexapod is very stable 
-                  when stationary.
+                  A hexapod can use its tripod gait to walk in stable manner. Other gaits such as the wave or ripple gait, still 
+                  maintains stability as it will always have at least 3 legs on the ground. As well, due to the six legs, the hexapod is 
+                  very stable when stationary.
                 </td>
               </tr>
               <tr>
@@ -980,9 +1218,11 @@
               </tr>
               <tr>
                 <td>6. Support its own Weight</td>
-                <td>To be Determined</td>
+                <td>Conditional Pass</td>
                 <td>
-                  To be Determined
+                  The hexapod, with its current specifications, can support its weight when at least 5 (or potentially 4) legs are on 
+                  the ground at any one point in time. However,  with the current specifications, it cannot support its own weight if 
+                  a tripod gait is used. A wave gait or potentially a ripple gait will need to be used.
                 </td>
               </tr>
               <tr>
@@ -999,9 +1239,10 @@
             So far, quite a lot has been completed. The 3D CAD design has been completed, 
             a working kinematics model had been derived, and a motion study has been done to verify the kinematics and to visualize 
             the hexapod. However, this project is still a work in progress. As such, there are still a plenty of tasks that need to be 
-            done. These are as follows: (Note that this list does not necessarily needed to be followed sequentially)
+            done. These are as follows: (Note that this list does not necessarily needed to be followed sequentially). Completed tasks 
+            will be crossed out as they get finished.
             <ol type="1">
-              <li>Complete calculations to verify servo specifications meet requirements</li>
+              <li><s>Complete calculations to verify servo specifications meet requirements</s></li>
               <li>Modify CAD model, to deal with the impact force on the legs</li>
               <li>Simulations
                 <ol class="lower-alpha"> 
@@ -1038,9 +1279,9 @@
               <li>Find a better battery</li>
               <li>Design a better cable management system
                 <ol class="lower-alpha">
-                  <li>Build built at least one leg to better visualize the placement of the wires and where they can be fed through</li>
+                  <li>Build at least one leg to better visualize the placement of the wires and where they can be fed through</li>
                   <li>Design new leg components with hollow compartments where the wires can be fed through</li>
-                  <li>Print and build new leg</li>
+                  <li>Print, build and test new leg</li>
                   <li>Iterate if needed</li>
                  </ol>
               </li>
